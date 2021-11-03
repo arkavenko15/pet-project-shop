@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-
-  constructor(private readonly productsService: ProductsService) { }
-
-  ngOnInit(): void {
-    this.productsService.getProducts(0).subscribe((result:any)=>{
-      console.log(result)
+  products: any[];
+  constructor(private readonly productsService: ProductsService) {
+    this.products = [];
+  }
+  ngOnInit(){
+    this.productsService.getProducts(0).subscribe((products: ProductsService[])=>{
+      console.log(products)
+      this.products = products;
     })
   }
 
