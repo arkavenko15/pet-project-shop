@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <div class="cart-navigation">
+  <mat-drawer #drawer class="example-sidenav" mode="over" position="end" >
+    <div class="cart-navigation"  fxLayout="row" fxLayoutAlign="space-between">
       <p>Cart</p>
       <button type="button" mat-button (click)="drawer.toggle()">
         X
@@ -10,7 +10,6 @@
 <nav class="navigation">
   <div class="logo"><img class="img-responsive" src="assets/logo.png"></div>
   <ul class="main-menu">
-    <li class="main-menu__item"> <a routerLink="/home" class="main-menu__item-link">Home</a> </li>
     <li class="main-menu__item"><a routerLink="/products" class="main-menu__item-link">Products</a></li>
     <li class="main-menu__item"><a routerLink="/checkout" class="main-menu__item-link">Checkout</a></li>
   </ul>
@@ -19,9 +18,10 @@
       <button type="button" mat-button (click)="drawer.toggle()" class="cart-btn">
         <div class="cart-img"><img class="img-responsive" src="assets/cart.png"></div>
       </button>
-      <router-outlet></router-outlet>
+
     </div>
   </div>
 </nav>
+<router-outlet></router-outlet>
 </mat-drawer-container>
 
