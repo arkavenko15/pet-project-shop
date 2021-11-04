@@ -2,11 +2,7 @@
   width: 100%;
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  background: url(../../assets/path.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: #D9D2E9;
 }
 
 .example-sidenav-content {
@@ -48,7 +44,7 @@
 }
 .mat-drawer{
   width: 250px;
-  background-color: antiquewhite;
+  background-color: #B4A7D6;
 }
 
 .cart{
@@ -58,10 +54,11 @@
   border: none;
   background-color: transparent;
 }
-.cart-navigation{
-  background-color: antiquewhite;
-}
 .logo{
   display: flex;
   align-items: center;
+}
+
+.mat-drawer-backdrop {
+  background-color: rgba(192,	116,	138,.6);
 }
