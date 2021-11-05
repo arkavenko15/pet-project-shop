@@ -1,7 +1,7 @@
+import { ProductsQuery } from './../models/product-query.model';
 import { ProductsService } from './../products.service';
 import { Component, OnInit } from '@angular/core';
-import { ProductsQuery } from '../models/product-query.model';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -12,36 +12,20 @@ export class ProductListComponent implements OnInit {
   productsQuery: ProductsQuery = {
     product_category: 'powder'
   };
-  constructor(private readonly productsService: ProductsService) {
+  constructor(private readonly productsService: ProductsService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.products = [];
   }
 
   ngOnInit() {
-    this.productsService.getProducts(this.productsQuery).subscribe((products: ProductsService[]) => {
-      console.log(products)
-      this.products = products;
-    })
+
   }
 
-  showSelectedBrand(brand: string): void {
-    this.productsQuery.brand=brand;
-    this.productsService.getProducts( this.productsQuery).subscribe((products: ProductsService[]) => {
-      console.log(products)
+  showSelectedQuery(query: ProductsQuery): void {
+    console.log(query)
+    this.productsService.getProducts(query).subscribe((products: ProductsService[]) => {
       this.products = products;
     })
-  }
-  showSelectedCategory(category: string): void {
-    this.productsQuery.product_category = category
-    this.productsService.getProducts( this.productsQuery).subscribe((products: ProductsService[]) => {
-      console.log(products)
-      this.products = products;
-    })
-  }
-  showSelectedType(type:string): void{
-    this.productsQuery.product_type = type;
-    this.productsService.getProducts(this.productsQuery).subscribe((products:ProductsService[])=>{
-      this.products = products;
-    })
+
   }
 
 }

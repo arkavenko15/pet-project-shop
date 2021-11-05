@@ -1,5 +1,5 @@
 <div class="container">
-  <app-filter (selectedBrand)="showSelectedBrand($event)" (selectedCategory)="showSelectedCategory($event)" (selectedType)="showSelectedType($event)"></app-filter>
+  <app-filter (selectedQuery)="showSelectedQuery($event)"></app-filter>
   <div class="product-list" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
     <div *ngFor="let product of products">
       <app-product-item [product]="product" ></app-product-item>

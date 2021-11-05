@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-
+import { ProductsQuery } from '../models/product-query.model';
+import { ActivatedRoute, Router } from '@angular/router';
 interface Brand{
     value: string;
     viewValue: string;
@@ -20,11 +21,11 @@ interface Type{
 })
 export class FilterComponent implements OnInit {
   form: FormGroup;
-  @Output() selectedBrand = new EventEmitter();
-  @Output() selectedCategory = new EventEmitter();
-  @Output() selectedType = new EventEmitter();
+
+  @Output() selectedQuery:EventEmitter<ProductsQuery> = new EventEmitter();
 
   brands: Brand[] = [
+    {value: '', viewValue: 'All'},
     {value: 'almay', viewValue: 'Almay'},
     {value: 'alva', viewValue: 'Alva'},
     {value: 'covergirl', viewValue: 'CoverGirl'},
@@ -32,6 +33,7 @@ export class FilterComponent implements OnInit {
     {value: 'pure anada', viewValue: 'Pure Anada'},
   ];
   categories: Category[] = [
+    {value: '', viewValue: 'All'},
     {value: 'powder', viewValue: 'Powder'},
     {value: 'cream', viewValue: 'Cream'},
     {value: 'pencil', viewValue: 'Pencil'},
@@ -39,31 +41,76 @@ export class FilterComponent implements OnInit {
     {value: 'gel', viewValue: 'Gel'},
   ];
   types: Type[] = [
-    {value: 'foundation', viewValue: 'Powder'},
-    {value: 'blush', viewValue: 'Cream'},
-    {value: 'bronzer', viewValue: 'Pencil'},
+    {value: '', viewValue: 'All'},
+    {value: 'foundation', viewValue: 'Foundation'},
+    {value: 'blush', viewValue: 'Blush'},
+    {value: 'bronzer', viewValue: 'Bronzer'},
   ]
   brandControl = new FormControl();
   categoryControl = new FormControl();
   typeControl = new FormControl()
-  constructor() {
+
+  productsQuery: ProductsQuery = {
+    product_category: 'powder'
+  };
+  defaultQuery : ProductsQuery = {
+    product_category: 'powder'
+  };
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.form = new FormGroup({
       brand: this.brandControl,
       category: this.categoryControl,
       type: this.typeControl
   }); }
+  resetFilter(){
+    this.productsQuery =this.defaultQuery;
+     this.selectedQuery.emit(this.productsQuery);
+     this.brandControl.setValue('',{emitEvent:false})
+     this.categoryControl.setValue('',{emitEvent:false})
+     this.typeControl.setValue('',{emitEvent:false})
 
-  ngOnInit(): void {
-    this.brandControl.valueChanges.subscribe(result=>{
-      this.selectedBrand.emit(result);
-      console.log(result)
-    });
-    this.categoryControl.valueChanges.subscribe(result=>{
-      this.selectedCategory.emit(result);
-      console.log(result)
-    });
-    this.typeControl.valueChanges.subscribe(result=>{
-      this.selectedCategory.emit(result)
-    })
   }
+  ngOnInit(): void {
+    this.brandControl.valueChanges.subscribe(brand=>{
+      this.productsQuery.brand =brand;
+      console.log(brand)
+      this.refreshUrl(this.productsQuery)
+    });
+    this.categoryControl.valueChanges.subscribe(product_category=>{
+      this.productsQuery.product_category =product_category;
+      console.log(product_category)
+      this.refreshUrl(this.productsQuery)
+    });
+    this.typeControl.valueChanges.subscribe(type=>{
+      this.productsQuery.product_type =type;
+      this.refreshUrl(this.productsQuery)
+    })
+    this.activatedRoute.queryParams.subscribe(
+      (queryParam: any) => {
+        this.productsQuery.brand = queryParam['brand'] || '';
+        this.productsQuery.product_category = queryParam['product_category'] || this.productsQuery.product_category;
+        this.productsQuery.product_type = queryParam['product_type'] || ''
+        console.log('QUERYPARAMS', queryParam);
+        this.selectedQuery.emit(this.productsQuery)
+        this.brandControl.setValue(this.productsQuery.brand,{emitEvent:false})
+        this.categoryControl.setValue(this.productsQuery.product_category,{emitEvent:false})
+        this.typeControl.setValue(this.productsQuery.product_type,{emitEvent:false})
+      }
+
+    );
+  }
+  refreshUrl(query: ProductsQuery) {
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.activatedRoute,
+        queryParams: {
+          'product_category': query.product_category,
+          'product_type': query.product_type,
+          'brand': query.brand
+        },
+      }
+    );
+  }
+
 }
