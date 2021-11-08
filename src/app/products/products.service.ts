@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 export class ProductsService {
   constructor(private httpClientService: HttpClient) { }
   public getProducts(query: any): Observable<any> {
+<<<<<<< HEAD
     query.pageSize = query.pageSize || '10';
     query.pageIndex = query.pageIndex || '0';
     console.log('FinalQuery', query);
@@ -19,6 +20,12 @@ export class ProductsService {
         return {products: products, length: res?.length || 0};
       })
     );
+=======
+
+    
+    // return this.httpClientService.get<any>(`http://makeup-api.herokuapp.com/api/v1/products.json?product_category=${query.product_category}`);
+    return this.httpClientService.get<any>(`http://makeup-api.herokuapp.com/api/v1/products.json`, {params: query});
+>>>>>>> branch-08.11
 
   }
 }

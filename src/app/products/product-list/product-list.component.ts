@@ -22,8 +22,18 @@ export class ProductListComponent implements OnInit {
 
   }
 
+<<<<<<< HEAD
   getProducts(query: ProductsQuery): void {
     this.productsQuery = query;
+=======
+  showSelectedQuery(query: ProductsQuery): void {
+    console.log(query)
+    this.productsService.getProducts(query).subscribe((products: ProductsService[]) => {
+      console.log(products);
+      
+      this.products = products;
+    })
+>>>>>>> branch-08.11
 
     this.productsService.getProducts(this.productsQuery).subscribe((products: any) => {
       this.products = products.products;

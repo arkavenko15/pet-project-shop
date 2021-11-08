@@ -16,8 +16,14 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(){
 
   }
+<<<<<<< HEAD
   onImgError(event:any){
     console.log('onImgError')
     event.target.src = 'assets/no-image.png'
    }
+=======
+  getID(id:any){
+    console.log(id)
+  }
+>>>>>>> branch-08.11
 }
