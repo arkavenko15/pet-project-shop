@@ -16,9 +16,18 @@ export class ProductsService {
         // res = res.filter(x => x.name.toLowerCase().includes('clean'))
         let products = res.slice(+query.pageIndex * +query.pageSize, (+query.pageIndex) * +query.pageSize + +query.pageSize)
 
-        return {products: products, length: res?.length || 0};
+        return { products: products, length: res?.length || 0 };
       })
     );
 
+    // create new method GetpRODUCT()
+    // http://makeup-api.herokuapp.com/api/v1/products.json?id=43
+  }
+  public getProduct(productId: number): Observable<any> {
+    return this.httpClientService.get<any>(`http://makeup-api.herokuapp.com/api/v1/products.json?product_category=powder&id=${productId}`).pipe(
+      map((res: any[]) => {
+        return res.find(x => x.id === productId);
+      })
+    );
   }
 }

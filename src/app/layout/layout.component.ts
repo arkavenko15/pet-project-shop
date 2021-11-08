@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from './loader/loader.service';
 
 @Component({
   selector: 'app-layout',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
   showFiller = false;
 
-  constructor() { }
+  constructor(public loaderService:LoaderService) { }
 
   ngOnInit(): void {
   }

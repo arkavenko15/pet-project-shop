@@ -3,6 +3,7 @@ import { ProductsService } from './../products.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator/paginator';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -22,14 +23,15 @@ export class ProductListComponent implements OnInit {
 
   }
 
+
   getProducts(query: ProductsQuery): void {
     this.productsQuery = query;
 
-    this.productsService.getProducts(this.productsQuery).subscribe((products: any) => {
-      this.products = products.products;
-      this.productsLength = products.length;
+  this.productsService.getProducts(this.productsQuery).subscribe((products: any) => {
+    this.products = products.products;
+    this.productsLength = products.length;
+  });
 
-    });
   }
 
   paginationChange(pageEvent: PageEvent): void {

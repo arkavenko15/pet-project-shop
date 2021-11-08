@@ -1,16 +1,13 @@
 .product-item{
-  max-width: 300px;
-  width: 300px;
+  width: 350px;
   padding: 15px 25px;
   border: solid 1px #5824d4;
-  margin-bottom: 35px;
-  flex-grow: 1;
-
+  margin-bottom: 40px;
 }
 .product-img{
   max-height: 200px;
 }
-.product-name , .product-price, .product-brand{
+.product-name , .product-price, .product-brand , .product-category{
   color: #4f4f4f;
   font-weight: 500;
   font-size: 18px;
@@ -34,4 +31,14 @@
   color: #5824d4;
   background-color: #fff;
 }
-
+.product-img-container{
+  position: relative;
+}
+.product-img{
+  width: 100%;
+}
+.like-option{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}

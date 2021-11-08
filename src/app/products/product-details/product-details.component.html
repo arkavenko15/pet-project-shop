@@ -1,1 +1,13 @@
-<p>product-details works!</p>
+<div class="product-details__item">
+  <img class="product-details__img" src={{product?.image_link}}/>
+  <div class="product-details__info">
+    <div class="product-details__name product-details__title">{{product?.name}}</div>
+    <div class="product-details__brand"><span class="product-details__title">Brand:</span>{{product?.brand}}</div>
+    <div class="product-details__category"><span class="product-details__title">Category:</span>{{product?.category}}</div>
+    <div class="product-details__price"><span class="product-details__title">Price:</span>{{product?.price | formatPrice}}<span >{{product?.price_sign}}</span></div>
+    <div class="product-details__date"><span class="product-details__title">Created at:</span>{{product?.created_at |date}}</div>
+    <div class="product-details__description">{{product?.description}}</div>
+    <button class="product-details__addtocart">ADD TO CART</button>
+  </div>
+</div>
+

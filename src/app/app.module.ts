@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,8 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { InterceptorService } from './layout/loader/interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,9 +26,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatPaginatorModule,
     FlexLayoutModule,
     AppRoutingModule,
-
+    FontAwesomeModule,
+    MatProgressBarModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

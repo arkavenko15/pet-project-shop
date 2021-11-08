@@ -48,7 +48,7 @@ export class FilterComponent implements OnInit {
   ]
   brandControl = new FormControl();
   categoryControl = new FormControl();
-  typeControl = new FormControl()
+  typeControl = new FormControl();
 
   productsQuery: ProductsQuery = {
     product_category: 'powder'
@@ -81,7 +81,7 @@ export class FilterComponent implements OnInit {
     });
     this.typeControl.valueChanges.subscribe(type=>{
       this.productsQuery.product_type =type;
-      this.refreshUrl(this.productsQuery)
+      this.refreshUrl(this.productsQuery) 
     })
     this.activatedRoute.queryParams.subscribe(
       (queryParam: any) => {

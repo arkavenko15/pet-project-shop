@@ -1,3 +1,4 @@
+import { InterceptorService } from '../layout/loader/interceptor.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NoPageComponent } from './no-page/no-page.component';
+import { FormatPricePipe } from './product-details/format-price.pipe';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     ProductListComponent,
@@ -22,6 +28,7 @@ import { NoPageComponent } from './no-page/no-page.component';
     FilterComponent,
     PaginatorComponent,
     NoPageComponent,
+    FormatPricePipe,
 
   ],
   imports: [
@@ -32,10 +39,14 @@ import { NoPageComponent } from './no-page/no-page.component';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
+
   ],
   providers: [
-    ProductsService
+    ProductsService,
   ]
 })
 export class ProductsModule { }

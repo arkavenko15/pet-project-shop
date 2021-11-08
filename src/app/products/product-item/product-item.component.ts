@@ -4,7 +4,8 @@ import { ProductListComponent } from '../product-list/product-list.component';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styleUrls: ['./product-item.component.scss']
+  styleUrls: ['./product-item.component.scss'],
+
 })
 export class ProductItemComponent implements OnInit {
   products: any[];
@@ -20,4 +21,16 @@ export class ProductItemComponent implements OnInit {
     console.log('onImgError')
     event.target.src = 'assets/no-image.png'
    }
+
+  getID(id:any){
+    console.log(id)
+  }
+  condition: boolean=true;
+  liked:boolean=false;
+  toggleLike(){
+      this.condition=!this.condition;
+  }
+  toggle(){
+    this.liked=!this.liked;
+  }
 }

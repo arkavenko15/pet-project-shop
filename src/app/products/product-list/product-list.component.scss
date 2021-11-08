@@ -1,3 +1,13 @@
-.container{
-  margin: 0px 40px;
+:host {
+  .container {
+    margin: 0px 40px;
+  }
+  .product-list {
+    flex: 1 1 1;
+  }
+  .progress-bar-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
 }
