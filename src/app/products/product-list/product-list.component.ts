@@ -27,14 +27,12 @@ export class ProductListComponent implements OnInit {
 
     this.productsService.getProducts(this.productsQuery).subscribe((products: any) => {
       this.products = products.products;
-
       this.productsLength = products.length;
-      console.log('ttt',products.length)
+
     });
   }
 
   paginationChange(pageEvent: PageEvent): void {
-    // console.log('productsList', pageEvent);
     this.productsQuery.pageIndex = pageEvent.pageIndex+'';
     this.productsQuery.pageSize = pageEvent.pageSize.toString();
     this.getProducts(this.productsQuery)

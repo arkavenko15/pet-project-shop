@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { NoPageComponent } from './no-page/no-page.component';
 @NgModule({
   declarations: [
     ProductListComponent,
@@ -20,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ProductItemComponent,
     FilterComponent,
     PaginatorComponent,
+    NoPageComponent,
 
   ],
   imports: [

@@ -13,7 +13,7 @@ export class ProductsService {
 
     return this.httpClientService.get<any>(`http://makeup-api.herokuapp.com/api/v1/products.json`, { params: query }).pipe(
       map((res: any[]) => {
-        res = res.filter(x => x.name.toLowerCase().includes('clean'))
+        // res = res.filter(x => x.name.toLowerCase().includes('clean'))
         let products = res.slice(+query.pageIndex * +query.pageSize, (+query.pageIndex) * +query.pageSize + +query.pageSize)
 
         return {products: products, length: res?.length || 0};

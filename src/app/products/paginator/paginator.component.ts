@@ -20,10 +20,8 @@ export class PaginatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.length = productsLength
   }
   paginatorChange(pageEvent: PageEvent): void {
-    console.log(pageEvent.pageSize*pageEvent.pageIndex)
     this.paginatorState.emit(pageEvent);
   }
 

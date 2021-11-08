@@ -6,7 +6,7 @@
     fxLayout="row wrap"
     fxLayoutAlign="space-between stretch"
   >
-    <div *ngFor="let product of products">
+    <div *ngFor="let product of products" fxLayout="column" class="product-list-container">
       <app-product-item [product]="product"></app-product-item>
     </div>
   </div>
