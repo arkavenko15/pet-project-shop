@@ -9,13 +9,17 @@ import { ProductsService } from './products.service';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { FilterComponent } from './filter/filter.component';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     ProductListComponent,
     ProductDetailsComponent,
     ProductItemComponent,
     FilterComponent,
+    PaginatorComponent,
 
   ],
   imports: [
@@ -24,7 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FlexLayoutModule,
     MatSelectModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [
     ProductsService

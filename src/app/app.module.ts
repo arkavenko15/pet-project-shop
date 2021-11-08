@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { LayoutComponent } from './layout/layout.component';
     HttpClientModule,
     MatSidenavModule,
     MatSelectModule,
+    MatPaginatorModule,
     FlexLayoutModule,
     AppRoutingModule,
 

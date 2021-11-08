@@ -73,12 +73,10 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
     this.brandControl.valueChanges.subscribe(brand=>{
       this.productsQuery.brand =brand;
-      console.log(brand)
       this.refreshUrl(this.productsQuery)
     });
     this.categoryControl.valueChanges.subscribe(product_category=>{
       this.productsQuery.product_category =product_category;
-      console.log(product_category)
       this.refreshUrl(this.productsQuery)
     });
     this.typeControl.valueChanges.subscribe(type=>{
@@ -90,7 +88,6 @@ export class FilterComponent implements OnInit {
         this.productsQuery.brand = queryParam['brand'] || '';
         this.productsQuery.product_category = queryParam['product_category'] || this.productsQuery.product_category;
         this.productsQuery.product_type = queryParam['product_type'] || ''
-        console.log('QUERYPARAMS', queryParam);
         this.selectedQuery.emit(this.productsQuery)
         this.brandControl.setValue(this.productsQuery.brand,{emitEvent:false})
         this.categoryControl.setValue(this.productsQuery.product_category,{emitEvent:false})

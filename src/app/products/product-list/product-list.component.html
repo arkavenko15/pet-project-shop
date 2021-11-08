@@ -1,8 +1,13 @@
 <div class="container">
-  <app-filter (selectedQuery)="showSelectedQuery($event)"></app-filter>
-  <div class="product-list" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
+  <app-filter (selectedQuery)="getProducts($event)"></app-filter>
+  <app-paginator [length]="productsLength" (paginatorState)="paginationChange($event)"></app-paginator>
+  <div
+    class="product-list"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-between stretch"
+  >
     <div *ngFor="let product of products">
-      <app-product-item [product]="product" ></app-product-item>
+      <app-product-item [product]="product"></app-product-item>
     </div>
   </div>
 </div>

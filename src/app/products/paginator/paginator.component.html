@@ -1,0 +1,11 @@
+
+<input [(ngModel)]="length" type="number">
+
+<mat-paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="paginatorChange($event)"
+  aria-label="Select page"
+>
+</mat-paginator>
