@@ -16,4 +16,7 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(){
 
   }
+  getID(id:any){
+    console.log(id)
+  }
 }

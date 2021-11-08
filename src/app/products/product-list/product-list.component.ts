@@ -23,6 +23,8 @@ export class ProductListComponent implements OnInit {
   showSelectedQuery(query: ProductsQuery): void {
     console.log(query)
     this.productsService.getProducts(query).subscribe((products: ProductsService[]) => {
+      console.log(products);
+      
       this.products = products;
     })
 
