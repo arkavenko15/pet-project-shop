@@ -12,10 +12,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from './layout/loader/interceptor.service';
+import { CartComponent } from './cart/cart.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { CartModule } from './cart/cart.module';
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,9 +29,11 @@ import { InterceptorService } from './layout/loader/interceptor.service';
     MatSelectModule,
     MatPaginatorModule,
     FlexLayoutModule,
-    AppRoutingModule,
     FontAwesomeModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    //custom
+    AppRoutingModule,
+    CartModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}

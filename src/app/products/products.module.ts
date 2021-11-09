@@ -14,7 +14,6 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { NoPageComponent } from './no-page/no-page.component';
 import { FormatPricePipe } from './product-details/format-price.pipe';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -27,7 +26,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ProductItemComponent,
     FilterComponent,
     PaginatorComponent,
-    NoPageComponent,
     FormatPricePipe,
 
   ],

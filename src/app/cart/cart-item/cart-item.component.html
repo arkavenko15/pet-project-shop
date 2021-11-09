@@ -1,0 +1,16 @@
+<div class="cart-item" fxLayout="row"  fxLayoutAlign="space-between stretch">
+  <div class="cart-item-wrapper">
+    <div class="cart-item-title">Name</div>
+    <div class="cart-item-name">{{cartItem.id}} {{cartItem.name}}</div>
+  </div>
+  <div class="cart-item-wrapper">
+    <div class="cart-item-title">Price</div>
+    <div class="cart-item-price">{{cartItem.price}}</div>
+  </div>
+  <div class="cart-item-wrapper">
+    <div class="cart-item-title">Quantity</div>
+    <div class="cart-item-quantity">{{cartItem.qty || 0}}</div>
+  </div>
+
+</div>
+

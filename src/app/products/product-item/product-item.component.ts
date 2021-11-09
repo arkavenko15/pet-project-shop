@@ -1,6 +1,6 @@
-import { ProductsService } from '../products.service';
+import { Product } from './../models/product.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductListComponent } from '../product-list/product-list.component';
+import { CartService } from 'src/app/cart/cart.service';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -10,27 +10,23 @@ import { ProductListComponent } from '../product-list/product-list.component';
 export class ProductItemComponent implements OnInit {
   products: any[];
   @Input()
-  product: any;
-  constructor(private readonly productsService: ProductsService) {
+  product: Product;
+  constructor(private msg: CartService) {
     this.products = [];
   }
-  ngOnInit(){
+  ngOnInit() {
 
   }
-  onImgError(event:any){
-    console.log('onImgError')
+  handleAddToCart() {
+    this.product.qty =3;
+    this.msg.setCartItems(this.product)
+
+  }
+  onImgError(event: any) {
     event.target.src = 'assets/no-image.png'
-   }
-
-  getID(id:any){
-    console.log(id)
   }
-  condition: boolean=true;
-  liked:boolean=false;
-  toggleLike(){
-      this.condition=!this.condition;
-  }
-  toggle(){
-    this.liked=!this.liked;
+  liked: boolean = false;
+  toggle() {
+    this.liked = !this.liked;
   }
 }

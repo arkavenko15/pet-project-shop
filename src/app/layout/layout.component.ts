@@ -8,10 +8,13 @@ import { LoaderService } from './loader/loader.service';
 })
 export class LayoutComponent implements OnInit {
   showFiller = false;
+  public qty: number = 0;
 
   constructor(public loaderService:LoaderService) { }
-
   ngOnInit(): void {
   }
 
+  setTotalCartItemsQty(qty: number): void {
+    this.qty = qty || 0;
+  }
 }

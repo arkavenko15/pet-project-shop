@@ -1,0 +1,10 @@
+<div *ngIf="cartItems.length === 0">Your Cart is Empty.</div>
+<div class="cart-items">
+  <div *ngFor="let item of cartItems">
+    <app-cart-item [cartItem]="item"></app-cart-item>
+  </div>
+  <div class="cart-total">
+    <span class="cart-total-title">Cart Total:</span>
+    {{ cartTotal | currency: "USD" }}
+  </div>
+</div>

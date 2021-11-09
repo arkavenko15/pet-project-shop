@@ -1,3 +1,5 @@
+import { Product } from './../models/product.model';
+import { map } from 'rxjs/operators';
 import { ProductsQuery } from './../models/product-query.model';
 import { ProductsService } from './../products.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,17 +20,15 @@ export class ProductListComponent implements OnInit {
   constructor(private readonly productsService: ProductsService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.products = [];
   }
-
   ngOnInit() {
 
   }
-
-
   getProducts(query: ProductsQuery): void {
     this.productsQuery = query;
 
   this.productsService.getProducts(this.productsQuery).subscribe((products: any) => {
-    this.products = products.products;
+    console.log('products', products)
+    this.products = products.products.map((p: any) => new Product(p));
     this.productsLength = products.length;
   });
 

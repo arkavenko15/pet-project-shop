@@ -1,5 +1,7 @@
+import { Product } from './../models/product.model';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/cart/cart.service';
 import { ProductsQuery } from '../models/product-query.model';
 
 import { ProductsService } from './../products.service';
@@ -12,9 +14,9 @@ import { ProductsService } from './../products.service';
 export class ProductDetailsComponent implements OnInit {
 
   private id: number = 0;
-  product: any;
+  product: Product;
   productsQuery: ProductsQuery = {};
-  constructor(private activatedRoute: ActivatedRoute,private readonly productsService: ProductsService) {
+  constructor(private activatedRoute: ActivatedRoute,private readonly productsService: ProductsService,private msg: CartService) {
   }
 
   ngOnInit(): void {
@@ -22,7 +24,10 @@ export class ProductDetailsComponent implements OnInit {
     console.log(this.id)
     this.showProduct(this.id)
   }
+  handleAddToCart() {
+    this.msg.setCartItems(this.product)
 
+  }
   showProduct(id:number){
     this.productsService.getProduct(id).subscribe((product: any) => {
       this.product = product;

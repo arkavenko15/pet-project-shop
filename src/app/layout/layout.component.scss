@@ -6,7 +6,7 @@
 }
 
 .progress-bar-container {
-  height: 5px;
+  height: 4px;
 }
 
 .example-sidenav-content {
@@ -47,7 +47,7 @@
   }
 }
 .mat-drawer{
-  width: 250px;
+  width: 400px;
   background-color: #B4A7D6;
 }
 
@@ -57,6 +57,17 @@
 .cart-btn{
   border: none;
   background-color: transparent;
+  position: relative;
+}
+.cart-quantity{
+  position: absolute;
+  right: -5px;
+  top: -10px;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  color: #5824d4;
 }
 .logo{
   display: flex;
@@ -65,4 +76,19 @@
 
 .mat-drawer-backdrop {
   background-color: rgba(192,	116,	138,.6);
+}
+.close-btn{
+  border: none;
+  background-color: transparent;
+  width: 45px;
+  height: 45px;
+}
+.close-btn img{
+  width: 100%;
+}
+.cart-title{
+  line-height: 35px;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 2px;
 }

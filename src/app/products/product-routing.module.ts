@@ -1,5 +1,3 @@
-import { NoPageComponent } from './no-page/no-page.component';
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -11,7 +9,7 @@ const routes: Routes = [
     path: '', children: [
       { path: '', component: ProductListComponent },
       { path: ':id', component: ProductDetailsComponent },
-      // { path: '**', component: NoPageComponent },
+
     ]
   }
 ];

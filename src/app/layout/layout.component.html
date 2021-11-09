@@ -5,22 +5,24 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="over" position="end" >
     <div class="cart-navigation"  fxLayout="row" fxLayoutAlign="space-between">
-      <p>Cart</p>
-      <button type="button" mat-button (click)="drawer.toggle()">
-        X
+      <p class="cart-title">Cart</p>
+      <button class="close-btn" type="button" mat-button (click)="drawer.toggle()">
+        <img src="assets/close-icon.png" alt="">
       </button>
     </div>
+    <app-cart [drawer]="drawer" (totalQtyOutput)="setTotalCartItemsQty($event)" ></app-cart>
   </mat-drawer>
 <nav class="navigation">
   <div class="logo"><img class="img-responsive" src="assets/logo.png"></div>
   <ul class="main-menu">
     <li class="main-menu__item"><a routerLink="/products" class="main-menu__item-link">Products</a></li>
-    <li class="main-menu__item"><a routerLink="/products/20" class="main-menu__item-link">Checkout</a></li>
-    <!-- <li class="main-menu__item"><a routerLink="/checkout" class="main-menu__item-link">Checkout</a></li> -->
+    <li class="main-menu__item"><a routerLink="/checkout" class="main-menu__item-link">Checkout</a></li>
   </ul>
   <div class="cart">
+
     <div class="example-sidenav-content">
       <button type="button" mat-button (click)="drawer.toggle()" class="cart-btn">
+        <span class="cart-quantity" >{{qty}}</span>
         <div class="cart-img"><img class="img-responsive" src="assets/cart.png"></div>
       </button>
 
