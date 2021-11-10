@@ -9,6 +9,7 @@ import { CartService } from 'src/app/cart/cart.service';
 })
 export class ProductItemComponent implements OnInit {
   products: any[];
+  productCount:number=1;
   @Input()
   product: Product;
   constructor(private msg: CartService) {
@@ -18,8 +19,8 @@ export class ProductItemComponent implements OnInit {
 
   }
   handleAddToCart() {
-    this.product.qty =3;
-    this.msg.setCartItems(this.product)
+    this.product.qty =this.productCount;
+    this.msg.setCartItems(Object.assign({},this.product),true)
 
   }
   onImgError(event: any) {
@@ -28,5 +29,24 @@ export class ProductItemComponent implements OnInit {
   liked: boolean = false;
   toggle() {
     this.liked = !this.liked;
+  }
+  onDecrementClick(){
+    return this.productCount-=1;
+  }
+  onIncrementClick(){
+    return this.productCount+=1;
+  }
+  ///////////////////////////
+  decrementDisabled(){
+    if(this.productCount<=1){
+      return true
+    }
+    return false
+  }
+  incrementDisabled(){
+    if(this.productCount>=10){
+      return true
+    }
+    return false
   }
 }

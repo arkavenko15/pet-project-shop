@@ -1,3 +1,4 @@
+import { CheckoutModule } from './checkout/checkout.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -12,9 +13,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from './layout/loader/interceptor.service';
-import { CartComponent } from './cart/cart.component';
-import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartModule } from './cart/cart.module';
+import {MatDialogModule} from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +32,11 @@ import { CartModule } from './cart/cart.module';
     FlexLayoutModule,
     FontAwesomeModule,
     MatProgressBarModule,
+    MatDialogModule,
     //custom
     AppRoutingModule,
-    CartModule
+    CartModule,
+    CheckoutModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}

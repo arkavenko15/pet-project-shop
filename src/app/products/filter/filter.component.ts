@@ -81,7 +81,7 @@ export class FilterComponent implements OnInit {
     });
     this.typeControl.valueChanges.subscribe(type=>{
       this.productsQuery.product_type =type;
-      this.refreshUrl(this.productsQuery) 
+      this.refreshUrl(this.productsQuery)
     })
     this.activatedRoute.queryParams.subscribe(
       (queryParam: any) => {

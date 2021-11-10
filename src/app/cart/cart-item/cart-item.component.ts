@@ -1,5 +1,9 @@
+import { CartService } from 'src/app/cart/cart.service';
 import { Product } from './../../products/models/product.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
+
 
 @Component({
   selector: 'app-cart-item',
@@ -7,11 +11,38 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./cart-item.component.scss']
 })
 export class CartItemComponent implements OnInit {
-  @Input() cartItem: Product
-  constructor() { }
+  @Input() cartItem: Product;
+  @Output()
+  updatedQtyOutput: EventEmitter<number> = new EventEmitter<number>();
+
+  constructor(private readonly cartService: CartService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log('this.cartItem', this.cartItem)
+
   }
 
+  decrementClick(): void {
+    let item = Object.assign({}, this.cartItem)
+    item.qty -= 1;
+    console.log('item.qty', item.qty);
+    if (item.qty == 0) {
+      this.openDialog()
+    } else
+      this.cartService.setCartItems(item, false)
+  }
+
+  incrementClick(): void {
+    let item = Object.assign({}, this.cartItem)
+    item.qty += 1;
+    console.log('item.qty', item.qty);
+    this.cartService.setCartItems(item, false)
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(CartDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.cartService.removeCartItem(this.cartItem)
+      };
+    });
+  }
 }

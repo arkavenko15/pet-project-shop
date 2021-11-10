@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { LoaderService } from './loader/loader.service';
+
+
 
 @Component({
   selector: 'app-layout',
@@ -17,4 +20,5 @@ export class LayoutComponent implements OnInit {
   setTotalCartItemsQty(qty: number): void {
     this.qty = qty || 0;
   }
+
 }

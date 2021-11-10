@@ -9,5 +9,21 @@
   font-weight: 500;
 }
 .cart-item-wrapper{
-  max-width: 70px;
+  max-width: 100px;
+}
+
+//quantity
+.quantity-btn{
+  width: 30px;height: 30px;
+  border: #5824d4 1px solid;
+  background-color: #5824d4;
+  color: #fff;
+}
+.quantity-btn:hover{
+  background-color: #fff;
+  color: #5824d4;
+}
+.product-quantity-input{
+  width: 30px;
+  border: #5824d4 1px solid;
 }

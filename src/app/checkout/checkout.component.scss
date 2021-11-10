@@ -1,0 +1,48 @@
+.checkout-container{
+  margin: 30px 150px;
+}
+.checkout-total{
+  font-size: 20px;
+  color: #5824d4;
+  font-weight: 500;
+  margin: 0 auto;
+}
+.form-input{
+  background-color: transparent;
+  border: 1px #5824d4 solid;
+  padding: 10px 15px;
+  margin-right: 10px;
+}
+.form-input:focus{
+  outline: none;
+}
+.form-btn{
+  padding: 10px 15px;
+  box-sizing: border-box;
+  border: 1px solid #5824d4;
+  background-color: #5824d4;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.form-btn:hover{
+  background-color: #fff;
+  color: #5824d4;
+}
+.purchase-name ,.card-info{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.purchase-info{
+  margin-bottom: 30px;
+}
+.card-number{
+  margin-bottom: 30px;
+}
+.checkout-title{
+  font-size: 18px;
+  color: #5824d4;
+  font-weight: 600;
+}

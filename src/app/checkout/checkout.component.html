@@ -1,0 +1,35 @@
+<div class="checkout-container" fxLayout="row" fxLayoutAlign="space-evenly stretch" *ngIf="checkoutItems.length >0">
+  <form class="checkout-form" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <h3 class="checkout-title">Shipping Details</h3>
+    <div class="purchase-name">
+      <input type="text" class="first-name form-input" placeholder="FIRST NAME" formControlName="firstName">
+      <input type="text" class="last-name form-input" placeholder="LAST NAME" formControlName="lastName">
+    </div>
+    <div class="purchase-info" formGroupName="address">
+      <input type="text" class="city form-input" placeholder="CITY" formControlName="city">
+      <input type="text" class="state form-input" placeholder="STATE" formControlName="state">
+      <input type="text" class="zip form-input" placeholder="ZIP" formControlName="zip">
+    </div>
+    <h3 class="checkout-title">Payment Information</h3>
+    <div class="payment-info" formGroupName="payment">
+      <input type="text" class="card-number form-input" placeholder="CARD NUMBER" formControlName="cardNumber">
+      <div class="card-info">
+        <input type="text" class="card-exp form-input" placeholder="EXP" formControlName="cardExp">
+        <input type="text" class="card-ccv form-input" placeholder="CCV" formControlName="cardCcv">
+      </div>
+    </div>
+    <button class="form-btn">Purchase</button>
+  </form>
+  <div class="order-details">
+    <h3 class="checkout-title">Selected Products</h3>
+    <div class="checkout-items" *ngFor="let item of checkoutItems">
+      <app-checkout-item [checkoutItem]="item"></app-checkout-item>
+    </div>
+    <div class="checkout-total ">
+      Total price: {{total}} $
+    </div>
+  </div>
+
+</div>
+
+

@@ -10,8 +10,6 @@ export class ProductsService {
   public getProducts(query: any): Observable<any> {
     query.pageSize = query.pageSize || '10';
     query.pageIndex = query.pageIndex || '0';
-    console.log('FinalQuery', query);
-
     return this.httpClientService.get<any>(`http://makeup-api.herokuapp.com/api/v1/products.json`, { params: query }).pipe(
       map((res: Product[]) => {
         // res = res.filter(x => x.name.toLowerCase().includes('clean'))

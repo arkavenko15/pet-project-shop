@@ -7,7 +7,8 @@ export class Product {
   brand: string;
   category: string;
   public qty: number;
-
+  created_at:string;
+  price_sign:string;
   constructor(options: any = {}) {
     this.id = options.id
     this.name = options.name
@@ -16,6 +17,8 @@ export class Product {
     this.imageUrl = options.image_link;
     this.brand = options.brand;
     this.category = options.category;
-    this.qty = options.qty
+    this.qty = options.qty;
+    this.created_at = options.created_at;
+    this.price_sign = options.price_sign;
   }
 }

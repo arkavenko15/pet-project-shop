@@ -27,7 +27,6 @@ export class ProductListComponent implements OnInit {
     this.productsQuery = query;
 
   this.productsService.getProducts(this.productsQuery).subscribe((products: any) => {
-    console.log('products', products)
     this.products = products.products.map((p: any) => new Product(p));
     this.productsLength = products.length;
   });

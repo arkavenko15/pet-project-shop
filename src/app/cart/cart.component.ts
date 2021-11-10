@@ -26,27 +26,7 @@ export class CartComponent implements OnInit {
   }
   addProductToCart(products: Product[]) {
 
-    console.log('cartItems', products);
-
     this.cartItems = products;
-
-    // let productExists = false;
-    // for (let i in this.cartItems) {
-    //   if (this.cartItems[i].id === product.id) {
-    //     this.cartItems[i].qty++
-    //     productExists = true
-    //     break;
-    //   }
-    // }
-    // if (!productExists) {
-    //   this.cartItems.push({
-    //     id: product.id,
-    //     productName: product.name,
-    //     qty: 1,
-    //     price: product.price
-    //   })
-    // }
-    debugger
     this.cartTotal = 0
     this.cartItems.forEach((item: { qty: number; price: number; }) => {
       this.cartTotal += (item.qty * item.price)
@@ -54,7 +34,6 @@ export class CartComponent implements OnInit {
   }
 
   updateItemsQty(qty: number): void {
-    debugger
     this.totalQty = qty;
     this.totalQtyOutput.emit(qty);
   }

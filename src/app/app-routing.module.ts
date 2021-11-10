@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-
 const routes: Routes = [
   {path: '', redirectTo:'products', pathMatch:'full'},
   {path: '', component:LayoutComponent, children:[
+    {path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule)},
     {path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)},
   ]},
 
