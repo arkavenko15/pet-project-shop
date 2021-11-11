@@ -1,0 +1,38 @@
+<mat-dialog-content class="mat-typography dialog-content">Your order is ready! Wait for it!<br>
+  Dear
+  <div class="order-name">{{data.orderInfo.firstName}}</div>
+  <div class="order-name">{{data.orderInfo.lastName}}</div><br>
+  with email
+  <div class="">{{data.orderInfo.email}}</div><br>
+  your order is succesfully captured
+  and will be sent to<br>
+  <div class="">{{data.orderInfo.city}}</div>
+  <div class="">{{data.orderInfo.state}}</div>
+  <div class="">{{data.orderInfo.date}}</div>
+  <div class="order-title">Your order includes:</div>
+  <div class="ordered-products" *ngFor="let item of data.checkoutItems">
+    <div class="order-item" fxLayout="row wrap" fxLayoutAlign="space-between stretch">
+      <div class="order-item__wrapper">
+        <div class="order-item__title">Name:</div>
+        <div class="order-item__name">{{ item.name }}</div>
+      </div>
+      <div class="order-item__wrapper">
+        <div class="order-item__title">Price:</div>
+        <div class="order-item__price">{{ item.price }}</div>
+      </div>
+      <div class="order-item__wrapper">
+        <div class="order-item__title">Brand:</div>
+        <div class="order-item__brand">{{ item.brand }}</div>
+      </div>
+      <div class="order-item__wrapper">
+        <div class="order-item__title">Quantity:</div>
+        <div class="order-item__qty">{{ item.qty }}</div>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="checkout-dialog">
+
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="dialog-btn">Yes</button>
+</mat-dialog-actions>
