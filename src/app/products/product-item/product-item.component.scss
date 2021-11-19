@@ -45,7 +45,7 @@
 }
 .quantity-btn{
   width: 30px;height: 30px;
-  border: #fafafa 1px solid;
+  border: #5824d4 1px solid;
   background-color: #5824d4;
   color: #fff;
 }
@@ -56,4 +56,8 @@
 .product-quantity-input{
   border: #5824d4 1px solid;
   padding: 0px 10px;
+  &:focus{
+    outline: none;
+  }
 }
+

@@ -12,7 +12,7 @@
   <div class="product-price">Price: {{product.price | formatPrice}}</div>
   <div class="product-quantity" fxLayout="row" fxLayoutAlign="space-between stretch">
     <button class="product-increment quantity-btn" (click)="onDecrementClick()" [disabled]="decrementDisabled()">-</button>
-    <input type="text" class="product-quantity-input" value={{productCount}} aria-readonly="true" id="qty">
+    <input type="text" class="product-quantity-input" value={{productCount}} readonly="true" id="qty">
     <button class="product-decrement quantity-btn" (click)="onIncrementClick()" [disabled]="incrementDisabled()">+</button>
   </div>
   <button class="product-btn"  [routerLink]="[product.id]">VIEW DETAILS</button>

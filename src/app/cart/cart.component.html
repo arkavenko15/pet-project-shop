@@ -1,3 +1,9 @@
+<div *ngIf="myInfo$ | async as myInfo">
+
+  info: {{ myInfo?.products || "no products set" }}
+
+
+</div>
 <div *ngIf="cartItems.length === 0">Your Cart is Empty.</div>
 <div class="cart-items">
   <div *ngFor="let item of cartItems">

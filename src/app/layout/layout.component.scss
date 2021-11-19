@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  background-color: #D9D2E9;
+  background-color: #d9d2e9;
 }
 
 .progress-bar-container {
@@ -19,47 +19,47 @@
 .example-sidenav {
   padding: 20px;
 }
-.navigation{
+.navigation {
   display: flex;
   justify-content: space-between;
   margin: 0 150px;
 }
-.main-menu{
+.main-menu {
   width: 100%;
   display: flex;
   justify-content: space-around;
 
-  &__item{
+  &__item {
     list-style-type: none;
     padding: 15px;
     text-transform: uppercase;
-    color:#fff;
+    color: #fff;
   }
-  &__item:hover{
+  &__item:hover {
     background-color: #fff;
     color: #000;
   }
-  &__item-link{
+  &__item-link {
     color: #4f4f4f;
     text-decoration: none;
     font-weight: 500;
     font-size: 18px;
   }
 }
-.mat-drawer{
+.mat-drawer {
   width: 400px;
-  background-color: #B4A7D6;
+  background-color: #b4a7d6;
 }
 
-.cart{
+.cart {
   margin-left: 40px;
 }
-.cart-btn{
+.cart-btn {
   border: none;
   background-color: transparent;
   position: relative;
 }
-.cart-quantity{
+.cart-quantity {
   position: absolute;
   right: -5px;
   top: -10px;
@@ -69,24 +69,28 @@
   height: 15px;
   color: #5824d4;
 }
-.logo{
+.logo {
   display: flex;
   align-items: center;
 }
 
 .mat-drawer-backdrop {
-  background-color: rgba(192,	116,	138,.6);
+  background-color: rgba(192, 116, 138, 0.6);
 }
-.close-btn{
+.close-btn {
   border: none;
   background-color: transparent;
   width: 45px;
   height: 45px;
 }
-.close-btn img{
-  width: 100%;
+.user-img {
+  padding: 5px 15px 0px;
 }
-.cart-title{
+.close-btn img , .user-img img{
+  width: 100%;
+  height: 100%;
+}
+.cart-title {
   line-height: 35px;
   font-size: 22px;
   font-weight: 500;

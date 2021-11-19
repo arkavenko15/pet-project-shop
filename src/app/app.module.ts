@@ -15,6 +15,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { InterceptorService } from './layout/loader/interceptor.service';
 import { CartModule } from './cart/cart.module';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AuthentificationModule } from './authentification/authentification.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     //custom
     AppRoutingModule,
     CartModule,
-    CheckoutModule
+    CheckoutModule,
+    AuthentificationModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}

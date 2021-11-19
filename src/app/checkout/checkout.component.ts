@@ -1,3 +1,4 @@
+import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
 import { CartService } from 'src/app/cart/cart.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Product } from '../products/models/product.model';
@@ -10,15 +11,14 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 const moment = _rollupMoment || _moment;
+
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'MM/YYYY',
+    dateInput: 'LL',
   },
   display: {
-    dateInput: 'MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
+    dateInput: 'MMMM YYYY', // this is the format showing on the input element
+    monthYearLabel: 'MMMM YYYY', // this is showing on the calendar
   },
 };
 @Component({
@@ -114,30 +114,21 @@ export class CheckoutComponent implements OnInit {
     this.dialogData = { orderInfo: orderInfo, checkoutItems: this.checkoutItems };
     this.orderForm.reset();
     this.openDialog()
-
   }
+
   openDialog() {
-    const dialogRef = this.dialog.open(CheckoutDialog, { data: this.dialogData });
+    const dialogRef = this.dialog.open(CheckoutDialogComponent, { data: this.dialogData });
     dialogRef.afterClosed().subscribe(result => {
       return result
     });
   }
 
-}
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
 
-
-@Component({
-  selector: 'checkout-dialog',
-  templateUrl: 'checkout-dialog.html',
-  styleUrls: ['./checkout.component.scss']
-})
-export class CheckoutDialog {
-  constructor(
-    public dialogRef: MatDialogRef<CheckoutDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
+    datepicker.close();
   }
+
 }
+
+
+

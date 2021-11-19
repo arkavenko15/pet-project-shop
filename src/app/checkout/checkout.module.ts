@@ -1,5 +1,5 @@
 import { CheckoutRoutingModule } from './checkout-routing.module';
-import { CheckoutComponent, CheckoutDialog } from './checkout.component';
+import { CheckoutComponent } from './checkout.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,11 +12,12 @@ import {MatIconModule} from '@angular/material/icon'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
 @NgModule({
   declarations: [
     CheckoutComponent,
     CheckoutItemComponent,
-    CheckoutDialog
+    CheckoutDialogComponent
   ],
   imports: [
     CommonModule,

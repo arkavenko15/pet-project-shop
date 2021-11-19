@@ -1,19 +1,42 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LocalStorageRefService } from '../local-storage.service';
 
 import { Product } from './../products/models/product.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
   private _cartItems: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   public cartItems: Observable<Product[]> = this._cartItems.asObservable();
 
   private _totalItemsQty: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public totalItemsQty: Observable<number> = this._totalItemsQty.asObservable();
+  //storage
+  private _localStorage: Storage;
+  private _cartData$ = new BehaviorSubject<any>(null)
+  public cartData$ = this._cartData$.asObservable()
 
-  constructor() { }
+  //storage
+  constructor(private _localStorageRefService: LocalStorageRefService) {
+    this._localStorage = _localStorageRefService.localStorage
+  }
+
+  //storage
+  setInfo(data: any) {
+    const jsonData = JSON.stringify(data)
+    this._localStorage.setItem('cartData', jsonData)
+    this._cartData$.next(data)
+  }
+
+  loadInfo() {
+    const data = JSON.parse(this._localStorage.getItem('cartData'))
+    this._cartData$.next(data)
+  }
+  //storage
 
   setCartItems(newCartItem: Product, isProductAdded: boolean): void {
     let items: Product[] = this._cartItems.value || [];
@@ -33,7 +56,6 @@ export class CartService {
     } else {
       items.find(item => item.id === newCartItem.id).qty = newCartItem.qty
     }
-
     this._cartItems.next(items);
     this.setTotalQty(items)
   }
@@ -41,14 +63,12 @@ export class CartService {
   removeCartItem(cartItem: Product): void {
     let items: Product[] = this._cartItems.value || [];
     items = items.filter(item => item.id !== cartItem.id);
-
     this._cartItems.next(items);
     this.setTotalQty(items)
   }
 
   setTotalQty(items: Product[]): void {
     let total: number = 0;
-    console.log(items);
     total = items.reduce((a, b) => a + b.qty, 0)
     this._totalItemsQty.next(total);
   }

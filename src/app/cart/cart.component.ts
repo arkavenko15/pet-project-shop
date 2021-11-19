@@ -14,10 +14,12 @@ export class CartComponent implements OnInit {
   @Output()
   totalQtyOutput: EventEmitter<number> = new EventEmitter<number>();
   totalQty: number;
+  myInfo$ = this.cartService.cartData$
   constructor(private cartService: CartService) { }
   ngOnInit() {
     this.cartService.cartItems.subscribe((products: Product[]) => {
       this.addProductToCart(products)
+      this.cartService.loadInfo()
     })
 
     this.cartService.totalItemsQty.subscribe((qty: number) => {
@@ -25,7 +27,7 @@ export class CartComponent implements OnInit {
     })
   }
   addProductToCart(products: Product[]) {
-
+    this.cartService.setInfo(products)
     this.cartItems = products;
     this.cartTotal = 0
     this.cartItems.forEach((item: { qty: number; price: number; }) => {

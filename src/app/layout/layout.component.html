@@ -12,20 +12,26 @@
     </div>
     <app-cart [drawer]="drawer" (totalQtyOutput)="setTotalCartItemsQty($event)" ></app-cart>
   </mat-drawer>
-<nav class="navigation">
+<nav class="navigation" fxLayout="">
   <div class="logo"><img class="img-responsive" src="assets/logo.png"></div>
   <ul class="main-menu">
     <li class="main-menu__item"><a routerLink="/products" class="main-menu__item-link">Products</a></li>
     <li class="main-menu__item"><a routerLink="/checkout" class="main-menu__item-link">Checkout</a></li>
   </ul>
-  <div class="cart">
 
+  <div class="cart">
     <div class="example-sidenav-content">
       <button type="button" mat-button (click)="drawer.toggle()" class="cart-btn">
         <span class="cart-quantity" >{{qty}}</span>
-        <div class="cart-img"><img class="img-responsive" src="assets/cart.png"></div>
+        <div class="cart-img"><img class="img-responsive" src="assets/cart.png" alt="cart"></div>
       </button>
-
+    </div>
+  </div>
+  <div class="authentification">
+    <div class="example-sidenav-content">
+      <a routerLink="/authentification" class="auth-link">
+        <div class="user-img"><img class="img-responsive" src="assets/account.png" alt="user"></div>
+      </a>
     </div>
   </div>
 </nav>

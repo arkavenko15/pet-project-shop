@@ -28,7 +28,9 @@
           <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
           <mat-datepicker #dp
                           startView="multi-year"
-                          panelClass="example-month-picker">
+                          panelClass="example-month-picker"
+                          (monthSelected)="chosenMonthHandler($event, dp)"
+                          >
           </mat-datepicker>
         </mat-form-field>
         <input type="password" class="card-ccv form-input" placeholder="CCV" formControlName="cardCcv">
