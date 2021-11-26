@@ -2,7 +2,7 @@
   <form class="checkout-form" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
     <h3 class="checkout-title">Shipping Details</h3>
     <div class="purchase-email">
-      <input type="email" class="email form-input" placeholder="EMAIL" formControlName="email" ngModel email>
+      <input type="email" class="email form-input" placeholder="EMAIL" formControlName="email" email>
       <div class="email-error" *ngIf="orderForm.controls.email.errors?.email">
         Email not valid.
       </div>
@@ -29,11 +29,12 @@
           <mat-datepicker #dp
                           startView="multi-year"
                           panelClass="example-month-picker"
-                          (monthSelected)="chosenMonthHandler($event, dp)"
+                          (yearSelected)="chosenYearHandler($event)"
+                          (monthSelected)="chosenMonthHandler(dp, $event)"
                           >
           </mat-datepicker>
         </mat-form-field>
-        <input type="password" class="card-ccv form-input" placeholder="CCV" formControlName="cardCcv">
+        <input type="password" class="card-ccv form-input" placeholder="CCV" formControlName="CCV">
       </div>
     </div>
     <button class="form-btn" [disabled]="!orderForm.valid || cardNumberInvalide ||dateInvalide">Purchase</button>

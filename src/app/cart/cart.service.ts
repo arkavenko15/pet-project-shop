@@ -1,76 +1,62 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { LocalStorageRefService } from '../local-storage.service';
 
 import { Product } from './../products/models/product.model';
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  private _cartItems: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private _localStorage: Storage = this._localStorageRefService.localStorage;
+  private _cartItems: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(JSON.parse(this._localStorage.getItem('cartData')) || []);
   public cartItems: Observable<Product[]> = this._cartItems.asObservable();
-
-  private _totalItemsQty: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private _totalItemsQty: BehaviorSubject<number> = new BehaviorSubject<number>(this.getTotalQty(JSON.parse(this._localStorage.getItem('cartData'))||[]))
   public totalItemsQty: Observable<number> = this._totalItemsQty.asObservable();
-  //storage
-  private _localStorage: Storage;
-  private _cartData$ = new BehaviorSubject<any>(null)
-  public cartData$ = this._cartData$.asObservable()
+  constructor(private _localStorageRefService: LocalStorageRefService) {}
 
-  //storage
-  constructor(private _localStorageRefService: LocalStorageRefService) {
-    this._localStorage = _localStorageRefService.localStorage
-  }
-
-  //storage
-  setInfo(data: any) {
+  public setStorageCartItems(data: any):void {
     const jsonData = JSON.stringify(data)
     this._localStorage.setItem('cartData', jsonData)
-    this._cartData$.next(data)
+
   }
 
-  loadInfo() {
-    const data = JSON.parse(this._localStorage.getItem('cartData'))
-    this._cartData$.next(data)
-  }
-  //storage
-
-  setCartItems(newCartItem: Product, isProductAdded: boolean): void {
+  public setCartItems(newCartItem: Product, isProductAdded: boolean): void {
     let items: Product[] = this._cartItems.value || [];
-
     if (isProductAdded) {
-      let existedCartItem: Product = items.find(c => c.id === newCartItem.id) as Product;
+      let existedCartItem: Product = items.find(c => c.id === newCartItem.id && c.product_color === newCartItem.product_color) as Product;
       if (existedCartItem) {
         items.forEach(item => {
-          if (item.id == newCartItem.id) {
+          if (item.id == newCartItem.id && item.product_color == newCartItem.product_color) {
             item.qty = item.qty + newCartItem.qty;
           }
         })
       }
 
-      items = existedCartItem ? items : (items).concat([newCartItem]); // (previousCartItems).concat(newCartItem)
-      // fires new arrays of cartItems
+
+      items = existedCartItem ? items : (items).concat([newCartItem]);
     } else {
-      items.find(item => item.id === newCartItem.id).qty = newCartItem.qty
+      items.find(item => item.id === newCartItem.id).qty = newCartItem.qty;
     }
     this._cartItems.next(items);
     this.setTotalQty(items)
   }
 
-  removeCartItem(cartItem: Product): void {
+  public removeCartItem(cartItem: Product): void {
     let items: Product[] = this._cartItems.value || [];
-    items = items.filter(item => item.id !== cartItem.id);
+    items = items.filter(item => item.product_color !== cartItem.product_color || item.id !== cartItem.id);
     this._cartItems.next(items);
     this.setTotalQty(items)
   }
 
-  setTotalQty(items: Product[]): void {
+  public setTotalQty(items: Product[]): void {
     let total: number = 0;
-    total = items.reduce((a, b) => a + b.qty, 0)
+    total = items.reduce((a, b) => a + b.qty, 0) ||0
     this._totalItemsQty.next(total);
+  }
+
+  public getTotalQty(items: Product[]) {
+    return items.reduce((a, b) => a + b.qty, 0) || 0;
   }
 
   decrementQty(): void {

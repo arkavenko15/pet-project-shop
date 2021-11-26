@@ -21,14 +21,14 @@ export class AuthentificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      'email' : [null, Validators.required],
-      'password' : [null, Validators.required]
+      'email': [null, Validators.required],
+      'password': [null, Validators.required]
 
     });
   }
 
   public onFormSubmit(form: NgForm) {
-    console.log("signed in");
+
 
   }
 

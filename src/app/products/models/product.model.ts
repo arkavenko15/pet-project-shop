@@ -1,3 +1,4 @@
+import { Color } from './color.model';
 export class Product {
   id: number;
   name: string;
@@ -9,6 +10,9 @@ export class Product {
   public qty: number;
   created_at:string;
   price_sign:string;
+  product_colors: Color[];
+  product_color:string;
+  isLiked: boolean;
   constructor(options: any = {}) {
     this.id = options.id
     this.name = options.name
@@ -20,5 +24,8 @@ export class Product {
     this.qty = options.qty;
     this.created_at = options.created_at;
     this.price_sign = options.price_sign;
+    this.product_colors = options.product_colors;
+    this.product_color = options.product_color;
+    this.isLiked = options.isLiked;
   }
 }

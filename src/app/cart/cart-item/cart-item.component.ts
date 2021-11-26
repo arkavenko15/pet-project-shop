@@ -15,7 +15,7 @@ export class CartItemComponent implements OnInit {
   @Output()
   updatedQtyOutput: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private readonly cartService: CartService,public dialog: MatDialog) { }
+  constructor(private readonly cartService: CartService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -24,7 +24,6 @@ export class CartItemComponent implements OnInit {
   decrementClick(): void {
     let item = Object.assign({}, this.cartItem)
     item.qty -= 1;
-    console.log('item.qty', item.qty);
     if (item.qty == 0) {
       this.openDialog()
     } else
@@ -34,13 +33,12 @@ export class CartItemComponent implements OnInit {
   incrementClick(): void {
     let item = Object.assign({}, this.cartItem)
     item.qty += 1;
-    console.log('item.qty', item.qty);
     this.cartService.setCartItems(item, false)
   }
   openDialog() {
     const dialogRef = this.dialog.open(CartDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.cartService.removeCartItem(this.cartItem)
       };
     });

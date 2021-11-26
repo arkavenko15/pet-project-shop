@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 
 function getLocalStorage(): Storage {
+
   return localStorage;
 }
 

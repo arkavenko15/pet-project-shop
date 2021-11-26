@@ -8,6 +8,10 @@
     <div class="cart-item-price">{{cartItem.price}}</div>
   </div>
   <div class="cart-item-wrapper">
+    <div class="cart-item-title">Color</div>
+    <div class="cart-item-color" [ngStyle]="{backgroundColor: cartItem.product_color}" ></div>
+  </div>
+  <div class="cart-item-wrapper">
     <div class="cart-item-title">Quantity</div>
     <div class="cart-item-quantity" fxLayout="row">
       <button class="quantity-btn" (click)="decrementClick();" mat-button>-</button>

@@ -16,11 +16,15 @@ import { InterceptorService } from './layout/loader/interceptor.service';
 import { CartModule } from './cart/cart.module';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AuthentificationModule } from './authentification/authentification.module';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { WishlistItemComponent } from './wishlist/wishlist-item/wishlist-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
+    WishlistComponent,
+    WishlistItemComponent,
 
   ],
   imports: [
