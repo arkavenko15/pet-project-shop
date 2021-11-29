@@ -1,8 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator/paginator';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-
 import { WishlistService } from './../../wishlist/wishlist.service';
 import { ProductsQuery } from './../models/product-query.model';
 import { Product } from './../models/product.model';
@@ -15,18 +14,18 @@ import { ProductsService } from './../products.service';
 })
 
 export class ProductListComponent implements OnInit, OnDestroy {
-  products: Product[];
-  productsQuery: ProductsQuery = {};
-  productsLength: number = 0;
-
+  public products: Product[];
+  public productsQuery: ProductsQuery = {};
+  public productsLength: number = 0;
   private _destroy$ = new Subject;
 
-  constructor(private readonly productsService: ProductsService, private readonly wishlistService: WishlistService) {
+  constructor(private readonly productsService: ProductsService, private readonly wishlistService: WishlistService,private route: ActivatedRoute) {
     this.products = [];
   }
 
   ngOnInit() {
     this.trackChanges();
+
   }
 
   ngOnDestroy(): void {
@@ -34,7 +33,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this._destroy$.complete()
   }
 
-  getProducts(query: ProductsQuery): void {
+  public getProducts(query: ProductsQuery): void {
     this.productsQuery = query;
 
     this.productsService.getProducts(this.productsQuery).subscribe((products: any) => {
@@ -43,7 +42,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
   }
 
-  paginationChange(pageEvent: PageEvent): void {
+  public paginationChange(pageEvent: PageEvent): void {
     this.productsQuery.pageIndex = pageEvent.pageIndex + '';
     this.productsQuery.pageSize = pageEvent.pageSize.toString();
     this.getProducts(this.productsQuery)

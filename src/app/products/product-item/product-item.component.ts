@@ -15,7 +15,7 @@ export class ProductItemComponent implements OnInit {
   public productColor: string;
   public warningToSetColor: boolean = false;
   @Input()
-  product: Product;
+  public product: Product;
 
   constructor(private cartService: CartService, private wishlistService: WishlistService) {
     this.products = [];
@@ -30,7 +30,6 @@ export class ProductItemComponent implements OnInit {
     this.warningToSetColor = false;
   }
 
-
   public checkIsColorSet(): void {
     if (this.productColor == undefined) {
       this.warningToSetColor = true;
@@ -41,14 +40,10 @@ export class ProductItemComponent implements OnInit {
       cartBtn.click();
     }
   }
-
-
-  public handleAddToCart() {
+  public handleAddToCart():void {
     this.product.qty = this.productCount;
     this.product.product_color = this.productColor;
     this.cartService.setCartItems(Object.assign({}, this.product), true)
-    console.log(this.product);
-
   }
   public handleAddToWishlist(): void {
     this.wishlistService.setWishlistItems(Object.assign({}, this.product))
@@ -56,11 +51,11 @@ export class ProductItemComponent implements OnInit {
   public handleRemoveFromWishlist(): void {
     this.wishlistService.removeWishlistItem(Object.assign({}, this.product))
   }
-  public onImgError(event: any) {
+  public onImgError(event: any):void {
     event.target.src = 'assets/no-image.png'
   }
 
-  public setProductLiked() {
+  public setProductLiked():void {
     this.product.isLiked = !this.product.isLiked;
     if (this.product.isLiked) {
       this.handleAddToWishlist();

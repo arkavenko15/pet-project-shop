@@ -1,4 +1,5 @@
-import { CheckoutModule } from './checkout/checkout.module';
+import { CartResolver } from './cart/cart.resolver';
+import { CheckoutModule } from "./checkout/checkout.module";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -45,7 +46,8 @@ import { WishlistItemComponent } from './wishlist/wishlist-item/wishlist-item.co
     AuthentificationModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true},
+    CartResolver
   ],
   bootstrap: [AppComponent]
 })

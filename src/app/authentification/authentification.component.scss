@@ -1,32 +1,33 @@
-.authentification-container {
-  max-width: 700px;
-  margin: 0 auto;
+:host {
+  .authentification-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .authentification-card {
+    height: 650px;
+    background-color: #5824d4;
+  }
+
+  .email-container,
+  .password-container {
+    width: 100%;
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  .authentification-title {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  .login-btn,
+  .register-btn {
+    padding: 15px 25px;
+    background-color: #ffffff;
+    color: #5824d4;
+    font-weight: 600;
+    border: 1px solid #5824d4;
+    border-radius: 4px;
+  }
 }
-.authentification-card {
-  height: 650px;
-  background-color: #5824d4;
-}
-
-.email-container , .password-container {
-  width: 100%;
-  font-size: 22px;
-  margin-bottom: 30px;
-}
-
-.authentification-title {
-  color: #ffffff;
-  font-size: 26px;
-  font-weight: 600;
-}
-
-.login-btn , .register-btn{
-  padding: 15px 25px;
-  background-color: #ffffff;
-  color: #5824d4;
-  font-weight: 600;
-  border: 1px solid #5824d4;
-  border-radius: 4px;
-
-}
-
-

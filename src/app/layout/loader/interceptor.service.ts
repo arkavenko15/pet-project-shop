@@ -11,7 +11,6 @@ export class InterceptorService implements HttpInterceptor{
   constructor(public loaderService: LoaderService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     setTimeout(() => this.loaderService.show(), 0)
-
     return next.handle(req).pipe(
       delay(0),
       finalize(

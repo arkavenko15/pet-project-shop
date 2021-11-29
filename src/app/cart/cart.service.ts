@@ -11,14 +11,22 @@ export class CartService {
   private _localStorage: Storage = this._localStorageRefService.localStorage;
   private _cartItems: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(JSON.parse(this._localStorage.getItem('cartData')) || []);
   public cartItems: Observable<Product[]> = this._cartItems.asObservable();
+
   private _totalItemsQty: BehaviorSubject<number> = new BehaviorSubject<number>(this.getTotalQty(JSON.parse(this._localStorage.getItem('cartData'))||[]))
   public totalItemsQty: Observable<number> = this._totalItemsQty.asObservable();
+
   constructor(private _localStorageRefService: LocalStorageRefService) {}
 
-  public setStorageCartItems(data: any):void {
+  public setStorageCartItems(data: Product[]):void {
     const jsonData = JSON.stringify(data)
     this._localStorage.setItem('cartData', jsonData)
 
+  }
+
+  public getCartItems():Product[] {
+    const jsonData:Product[] = JSON.parse(this._localStorage.getItem('cartData'))
+    this._cartItems.next(jsonData)
+    return jsonData
   }
 
   public setCartItems(newCartItem: Product, isProductAdded: boolean): void {
@@ -59,7 +67,7 @@ export class CartService {
     return items.reduce((a, b) => a + b.qty, 0) || 0;
   }
 
-  decrementQty(): void {
+  public decrementQty(): void {
     this._totalItemsQty.next(this._totalItemsQty.value - 1);
   }
 

@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { WishlistComponent } from '../wishlist/wishlist.component';
@@ -12,20 +13,15 @@ import { LoaderService } from './loader/loader.service';
   encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnInit {
-  showFiller = false;
+  public showFiller = false;
   public qty: number = 0;
 
-  constructor(public loaderService:LoaderService, public dialog: MatDialog) { }
-  ngOnInit(): void {
-  }
-
-  setTotalCartItemsQty(qty: number): void {
+  constructor(public loaderService: LoaderService, public dialog: MatDialog, private route: ActivatedRoute) { }
+  ngOnInit(): void {}
+   setTotalCartItemsQty(qty: number): void {
     this.qty = qty || 0;
   }
-
-
-
-  public openDialog() {
+  public openDialog():void {
     this.dialog.open(WishlistComponent);
   }
 

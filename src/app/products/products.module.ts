@@ -1,4 +1,3 @@
-import { InterceptorService } from '../layout/loader/interceptor.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -43,6 +42,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   ],
   providers: [
     ProductsService,
+
   ]
 })
 export class ProductsModule { }

@@ -1,65 +1,71 @@
-.product-details{
-  &__item{
-    margin: 40px 60px;
-    padding: 60px 80px;
-    display: flex;
-    border: solid 1px #5824d4;
+:host {
+  .product-details {
+    &__item {
+      margin: 40px 60px;
+      padding: 60px 80px;
+      display: flex;
+      border: solid 1px #5824d4;
+    }
+    &__title {
+      font-weight: 600;
+      color: #5824d4;
+      margin-bottom: 30px;
+      margin-right: 10px;
+      text-transform: uppercase;
+    }
+    &__name {
+      font-size: 22px;
+    }
+    &__category,
+    &__brand,
+    &__price,
+    &__date {
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    &__info {
+      color: #4f4f4f;
+    }
+    &__img {
+      width: 350px;
+      margin-right: 30px;
+    }
+    &__addtocart {
+      padding: 10px 15px;
+      background-color: #5824d4;
+      box-sizing: border-box;
+      border: solid 1px #5824d4;
+      font-weight: 600;
+      color: #fff;
+      border-radius: 3px;
+      margin-top: 20px;
+    }
+    &__addtocart:hover {
+      background-color: #fff;
+      color: #5824d4;
+    }
+    &__description {
+      border: solid 1px #fff;
+      padding: 10px 15px;
+      margin: 15px 0px;
+    }
   }
-  &__title{
-    font-weight: 600;
-    color: #5824d4;
-    margin-bottom: 30px;
-    margin-right: 10px;
-    text-transform: uppercase;
-  }
-  &__name{
-    font-size: 22px;
-  }
-  &__category , &__brand ,&__price , &__date{
-    text-transform: uppercase;
-    font-size: 18px;
-  }
-  &__info{
-    color: #4f4f4f;
-  }
-  &__img{
-    width: 350px;
-    margin-right: 30px;
-  }
-  &__addtocart{
-    padding: 10px 15px;
+  //quantity
+  .quantity-btn {
+    width: 30px;
+    height: 30px;
+    border: #5824d4 1px solid;
     background-color: #5824d4;
-    box-sizing: border-box;
-    border: solid 1px #5824d4;
-    font-weight: 600;
     color: #fff;
-    border-radius: 3px;
-    margin-top: 20px;
   }
-  &__addtocart:hover{
+  .quantity-btn:hover {
     background-color: #fff;
     color: #5824d4;
   }
-  &__description{
-    border: solid 1px #fff;
-    padding: 10px 15px;
-    margin: 15px 0px;
+  .product-quantity-input {
+    border: #5824d4 1px solid;
   }
-}
-//quantity
-.quantity-btn{
-  width: 30px;height: 30px;
-  border: #5824d4 1px solid;
-  background-color: #5824d4;
-  color: #fff;
-}
-.quantity-btn:hover{
-  background-color: #fff;
-  color: #5824d4;
-}
-.product-quantity-input{
-  border: #5824d4 1px solid;
-}
-.product-quantity{
-  max-width: 150px;
+  .product-quantity {
+    max-width: 150px;
+  }
 }

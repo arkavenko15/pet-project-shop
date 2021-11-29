@@ -20,6 +20,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     FlexLayoutModule,
     MatDialogModule
   ],
-  // providers: [CartService]
+
 })
 export class CartModule { }

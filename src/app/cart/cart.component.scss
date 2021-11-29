@@ -1,7 +1,9 @@
-.cart-total-title{
-  color: #5824d4;
-  font-weight: 500;
-}
-.cart-total{
-  font-size: 18px;
+:host {
+  .cart-total-title {
+    color: #5824d4;
+    font-weight: 500;
+  }
+  .cart-total {
+    font-size: 18px;
+  }
 }

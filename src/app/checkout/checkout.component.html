@@ -8,8 +8,11 @@
       </div>
     </div>
     <div class="purchase-name">
-      <input type="text" class="first-name form-input" placeholder="FIRST NAME" formControlName="firstName">
+      <input type="text" class="first-name form-input" placeholder="FIRST NAME" formControlName="firstName" appForbiddenName>
+      <div class="first-name-error" *ngIf="orderForm.controls.firstName.errors?.['forbiddenFirstName']">First name cannot be {{orderForm.controls.firstName.value}}.</div>
+
       <input type="text" class="last-name form-input" placeholder="LAST NAME" formControlName="lastName">
+      <div class="last-name-error" *ngIf="orderForm.controls.lastName.errors?.['forbiddenLastName']">Last name cannot be {{orderForm.controls.lastName.value}}.</div>
     </div>
     <div class="purchase-info">
       <input type="text" class="city form-input" placeholder="CITY" formControlName="city">

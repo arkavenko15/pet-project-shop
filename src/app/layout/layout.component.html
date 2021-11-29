@@ -1,48 +1,66 @@
 <div class="progress-bar-container spinner-container">
-
-  <mat-progress-bar *ngIf="loaderService.isLoading | async" mode="indeterminate"> </mat-progress-bar>
+  <mat-progress-bar
+    *ngIf="loaderService.isLoading | async"
+    mode="indeterminate"
+  >
+  </mat-progress-bar>
 </div>
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="over" position="end" >
-    <div class="cart-navigation"  fxLayout="row" fxLayoutAlign="space-between">
+<mat-drawer-container class="layout-container" autosize>
+  <mat-drawer #drawer class="cart-sidewindow" mode="over" position="end">
+    <div class="cart-navigation">
       <p class="cart-title">Cart</p>
-      <button class="close-btn" type="button" mat-button (click)="drawer.toggle()" >
-        <img src="assets/close-icon.png" alt="">
+      <button
+        class="close-btn"
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+      >
+        <img src="assets/close-icon.png" alt="" />
       </button>
     </div>
-    <app-cart [drawer]="drawer" (totalQtyOutput)="setTotalCartItemsQty($event)" ></app-cart>
+    <app-cart
+      [drawer]="drawer"
+      (totalQtyOutput)="setTotalCartItemsQty($event)"
+    ></app-cart>
   </mat-drawer>
-<nav class="navigation" fxLayout="">
-  <div class="logo"><img class="img-responsive" src="assets/logo.png"></div>
-  <ul class="main-menu">
-    <li class="main-menu__item"><a routerLink="/products" class="main-menu__item-link">Products</a></li>
-    <li class="main-menu__item"><a routerLink="/checkout" class="main-menu__item-link">Checkout</a></li>
-  </ul>
-  <div class="wishlist">
-    <div class="example-sidenav-content">
-      <div (click)="openDialog()" class="auth-link">
-        <div class="user-img"><img class="img-responsive" src="assets/wishlist.png" alt="user"></div>
+  <nav class="navigation" fxLayout="row" fxLayout.sm="row wrap" fxLayoutAlign.sm="center center" fxLayout.xs="row wrap">
+    <div class="logo" fxLayout="row" fxLayoutAlign="center center">
+      <img class="img-responsive" src="assets/logo.png" />
+    </div>
+    <ul class="main-menu">
+      <li class="main-menu__item">
+        <a routerLink="/products" class="main-menu__item-link">Products</a>
+      </li>
+      <li class="main-menu__item">
+        <a routerLink="/checkout" class="main-menu__item-link">Checkout</a>
+      </li>
+    </ul>
+    <div class="layout-features" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="wishlist">
+          <div (click)="openDialog()" class="auth-link">
+              <img class="wishlist-img"
+                src="assets/wishlist.png"
+                alt="user"
+              />
+            </div>
+      </div>
+      <button class="cart"
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+        class="cart-btn"
+        id="cartBtn"
+      >
+        <span class="cart-quantity">{{ qty }}</span>
+        <img class="cart-img" src="assets/cart.png" alt="cart" />
+      </button>
+      <div class="authentification">
+        <a routerLink="/authentification" class="auth-link">
+          <img class="user-img" src="assets/account.png" alt="user" />
+        </a>
       </div>
     </div>
-  </div>
-  <div class="cart">
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()" class="cart-btn" id="cartBtn">
-        <span class="cart-quantity" >{{qty}}</span>
-        <div class="cart-img"><img class="img-responsive" src="assets/cart.png" alt="cart"></div>
-      </button>
-    </div>
-  </div>
-  <div class="authentification">
-    <div class="example-sidenav-content">
-      <a routerLink="/authentification" class="auth-link">
-        <div class="user-img"><img class="img-responsive" src="assets/account.png" alt="user"></div>
-      </a>
-    </div>
-  </div>
-</nav>
+  </nav>
 
-<router-outlet></router-outlet>
-
+  <router-outlet></router-outlet>
 </mat-drawer-container>
-

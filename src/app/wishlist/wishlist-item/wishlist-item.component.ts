@@ -36,7 +36,6 @@ export class WishlistItemComponent implements OnInit {
   public removeFromWishlist(wishlistItem: Product): void {
     wishlistItem.isLiked = false;
     this.wishlistService.removeWishlistItem(wishlistItem)
-    // this.wishlistService.changedItem.next(wishlistItem)
   }
   public onDecrementClick() {
     return this.productCount -= 1;
@@ -45,12 +44,10 @@ export class WishlistItemComponent implements OnInit {
     return this.productCount += 1;
   }
 
-  public handleAddToCart() {
+  public handleAddToCart():void {
     this.wishlistItem.qty = this.productCount;
     this.wishlistItem.product_color = this.productColor;
     this.cartService.setCartItems(Object.assign({}, this.wishlistItem), true)
-    console.log(this.wishlistItem);
-
   }
   public checkIsColorSet(): void {
     if (this.productColor == undefined) {
@@ -75,7 +72,7 @@ export class WishlistItemComponent implements OnInit {
     } return false
   }
 
-  public setProductLiked() {
+  public setProductLiked():void {
     this.wishlistItem.isLiked = !this.wishlistItem.isLiked;
   }
 

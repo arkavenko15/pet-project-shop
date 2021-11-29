@@ -9,9 +9,9 @@ import { PageEvent } from '@angular/material/paginator';
 export class PaginatorComponent implements OnInit {
   @Input()
   public length = 100;
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-  pageEvent?: PageEvent;
+  public pageSize = 10;
+  public pageSizeOptions: number[] = [5, 10, 25, 100];
+  public pageEvent?: PageEvent;
 
   @Output()
   paginatorState: EventEmitter<PageEvent> = new EventEmitter();
@@ -21,7 +21,7 @@ export class PaginatorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  paginatorChange(pageEvent: PageEvent): void {
+  public paginatorChange(pageEvent: PageEvent): void {
     this.paginatorState.emit(pageEvent);
   }
 

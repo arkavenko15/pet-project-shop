@@ -1,6 +1,9 @@
-.paginator-container{
-  margin-bottom: 20px;
+:host {
+  .paginator-container {
+    margin-bottom: 20px;
+  }
+  .mat-paginator {
+    background-color: #5824d4;
+  }
 }
-.mat-paginator{
-  background-color: #5824d4;
-}
+

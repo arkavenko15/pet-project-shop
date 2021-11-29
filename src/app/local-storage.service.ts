@@ -7,7 +7,7 @@ function getLocalStorage(): Storage {
 
 @Injectable({ providedIn: "root" })
 export class LocalStorageRefService {
-  get localStorage(): Storage {
+  public get localStorage(): Storage {
     return getLocalStorage();
   }
 }

@@ -11,8 +11,6 @@ export class ProductsService {
   constructor(private httpClientService: HttpClient, private _localStorageRefService: LocalStorageRefService) { }
   public getProducts(query: any): Observable<any> {
     const whishlist: Product[] = JSON.parse(this._localStorage.getItem('wishlistData'))
-    console.log(whishlist);
-
     query.pageSize = query.pageSize || '10';
     query.pageIndex = query.pageIndex || '0';
     return this.httpClientService.get<any>(`http://makeup-api.herokuapp.com/api/v1/products.json`, { params: query }).pipe(
@@ -34,6 +32,4 @@ export class ProductsService {
       })
     );
   }
-
-
 }

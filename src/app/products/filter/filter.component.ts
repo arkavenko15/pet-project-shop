@@ -20,11 +20,11 @@ interface Type {
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  form: FormGroup;
+  public form: FormGroup;
 
   @Output() selectedQuery: EventEmitter<ProductsQuery> = new EventEmitter();
 
-  brands: Brand[] = [
+  public brands: Brand[] = [
     { value: '', viewValue: 'All' },
     { value: 'almay', viewValue: 'Almay' },
     { value: 'alva', viewValue: 'Alva' },
@@ -32,7 +32,7 @@ export class FilterComponent implements OnInit {
     { value: 'marcelle', viewValue: 'Marcelle' },
     { value: 'pure anada', viewValue: 'Pure Anada' },
   ];
-  categories: Category[] = [
+  public categories: Category[] = [
     { value: '', viewValue: 'All' },
     { value: 'powder', viewValue: 'Powder' },
     { value: 'cream', viewValue: 'Cream' },
@@ -40,20 +40,20 @@ export class FilterComponent implements OnInit {
     { value: 'liquid', viewValue: 'Liquid' },
     { value: 'gel', viewValue: 'Gel' },
   ];
-  types: Type[] = [
+  public types: Type[] = [
     { value: '', viewValue: 'All' },
     { value: 'foundation', viewValue: 'Foundation' },
     { value: 'blush', viewValue: 'Blush' },
     { value: 'bronzer', viewValue: 'Bronzer' },
   ]
-  brandControl = new FormControl();
-  categoryControl = new FormControl();
-  typeControl = new FormControl();
+  public brandControl = new FormControl();
+  public categoryControl = new FormControl();
+  public typeControl = new FormControl();
 
-  productsQuery: ProductsQuery = {
+  public productsQuery: ProductsQuery = {
     product_category: 'powder'
   };
-  defaultQuery: ProductsQuery = {
+  public defaultQuery: ProductsQuery = {
     product_category: 'powder'
   };
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
@@ -63,7 +63,7 @@ export class FilterComponent implements OnInit {
       type: this.typeControl
     });
   }
-  resetFilter() {
+  public resetFilter() {
     this.productsQuery = this.defaultQuery;
     this.selectedQuery.emit(this.productsQuery);
     this.brandControl.setValue('', { emitEvent: false })
@@ -97,7 +97,7 @@ export class FilterComponent implements OnInit {
 
     );
   }
-  refreshUrl(query: ProductsQuery) {
+  public refreshUrl(query: ProductsQuery) {
     this.router.navigate(
       [],
       {

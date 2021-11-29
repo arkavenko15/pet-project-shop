@@ -22,15 +22,13 @@ export class WishlistService {
 
   public setWishlistItems(newWishlistItem: Product) {
     let wishlistItems: Product[] = this._wishlistItems.value || [];
-    console.log(wishlistItems);
-
     wishlistItems = wishlistItems.concat([newWishlistItem])
     this.setStorageWishListItems(wishlistItems)
     this._wishlistItems.next(wishlistItems);
 
   }
 
-  public removeWishlistItem(item: Product) {
+  public removeWishlistItem(item: Product): void {
     let wishlistItems: Product[] = this._wishlistItems.value || [];
     this._changedItem.next(item);
     wishlistItems = wishlistItems.filter((i) => i.id !== item.id);
@@ -38,7 +36,7 @@ export class WishlistService {
     this._wishlistItems.next(wishlistItems);
   }
 
-  public setStorageWishListItems(data: Product[]) {
+  public setStorageWishListItems(data: Product[]): void {
     const jsonData = JSON.stringify(data)
     this._localStorage.setItem('wishlistData', jsonData)
   }

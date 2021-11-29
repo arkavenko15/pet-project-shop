@@ -24,30 +24,30 @@ export class ProductDetailsComponent implements OnInit {
     this.id = +this.activatedRoute.snapshot.params['id'];
     this.showProduct(this.id)
   }
-  handleAddToCart() {
+  public handleAddToCart(): void {
     this.product.qty =this.productCount;
     this.msg.setCartItems(Object.assign({},this.product),true)
 
   }
-  showProduct(id:number){
+  public showProduct(id:number): void{
     this.productsService.getProduct(id).subscribe((product: any) => {
       this.product = product;
     })
 
  }
-  onDecrementClick(){
+  public onDecrementClick(){
     return this.productCount-=1;
   }
-  onIncrementClick(){
+  public onIncrementClick(){
     return this.productCount+=1;
   }
-  decrementDisabled(){
+  public decrementDisabled(){
     if(this.productCount<=1){
       return true
     }
     return false
   }
-  incrementDisabled(){
+  public incrementDisabled(){
     if(this.productCount>=10){
       return true
     }

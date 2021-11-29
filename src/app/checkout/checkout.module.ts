@@ -1,3 +1,5 @@
+import { CheckoutResolver } from './checkout.resolver';
+
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './checkout.component';
 
@@ -13,11 +15,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
+
 @NgModule({
   declarations: [
     CheckoutComponent,
     CheckoutItemComponent,
-    CheckoutDialogComponent
+    CheckoutDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,9 @@ import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.compo
     MatInputModule,
     MatIconModule,
     MatDialogModule
+  ],
+  providers: [
+    CheckoutResolver
   ]
 })
 export class CheckoutModule { }

@@ -1,19 +1,37 @@
-.reset-btn{
-  box-sizing: border-box;
-  padding: 15px 35px;
-  height: 52px;
-  background-color: #5824d4;
-  border: 1px solid #5824d4;
-  border-radius: 3px;
-  margin-left: 15px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-}
-.reset-btn:hover{
-  color: #5824d4;
-  background-color: #fff;
-}
-.mat-primary .mat-option{
-  color: #5824d4;
+:host {
+  .reset-btn {
+    box-sizing: border-box;
+    padding: 15px 35px;
+    height: 52px;
+    background-color: #5824d4;
+    border: 1px solid #5824d4;
+    border-radius: 3px;
+    margin-left: 15px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .reset-btn:hover {
+    color: #5824d4;
+    background-color: #fff;
+  }
+  .mat-primary .mat-option {
+    color: #5824d4;
+  }
+
+  // SM
+  @media (min-width: 576px) {
+
+  }
+  // MD
+  @media (min-width: 785px) {
+    .reset-btn {
+      margin:0 0 0 15px;
+    }
+  }
+
+  // LG
+  @media (min-width: 815px) {
+    margin:0 auto 15px;
+  }
 }

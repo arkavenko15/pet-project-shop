@@ -17,25 +17,26 @@ export class CartItemComponent implements OnInit {
 
   constructor(private readonly cartService: CartService, public dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
 
   }
 
-  decrementClick(): void {
+  public decrementClick(): void {
     let item = Object.assign({}, this.cartItem)
     item.qty -= 1;
     if (item.qty == 0) {
       this.openDialog()
-    } else
-      this.cartService.setCartItems(item, false)
+    }
+    else this.cartService.setCartItems(item, false)
   }
 
-  incrementClick(): void {
+  public incrementClick(): void {
     let item = Object.assign({}, this.cartItem)
     item.qty += 1;
     this.cartService.setCartItems(item, false)
   }
-  openDialog() {
+
+  public openDialog(): void {
     const dialogRef = this.dialog.open(CartDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

@@ -1,6 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { Product } from './../products/models/product.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartService } from './cart.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart',
@@ -10,22 +12,21 @@ import { CartService } from './cart.service';
 export class CartComponent implements OnInit {
   @Input()
   drawer: any;
-  cartItems: any = [];
-  cartTotal = 0;
+  public cartItems: Product[] = [];
+  public cartTotal = 0;
   @Output()
-  totalQtyOutput: EventEmitter<number> = new EventEmitter<number>();
-  totalQty: number;
+  public totalQtyOutput: EventEmitter<number> = new EventEmitter<number>();
+  public totalQty: number;
 
-  storageData$: any = [];
+  public storageData$: Product[] = [];
 
-  constructor(private cartService: CartService) { }
-  ngOnInit() {
-    //load products to storage
+  constructor(private cartService: CartService, private route: ActivatedRoute) { }
+  public ngOnInit() {
 
+    this.route.data.pipe(first()).subscribe((data) => {
+      this.addProductToCart(data.cart)
 
-    // this.storageData$ = this.cartService.loadStorageCartItems();
-    //this.cartService.loadStorageCartItems();
-
+    })
     this.cartService.cartItems.subscribe((products: Product[]) => {
       this.addProductToCart(products)
     })
@@ -34,7 +35,7 @@ export class CartComponent implements OnInit {
       this.updateItemsQty(qty);
     })
   }
-  addProductToCart(products: Product[]) {
+  public addProductToCart(products: Product[]): void {
     this.cartItems = products;
     //set product to storage
     this.cartService.setStorageCartItems(
@@ -46,9 +47,7 @@ export class CartComponent implements OnInit {
     })
   }
 
-
-
-  updateItemsQty(qty: number): void {
+  public updateItemsQty(qty: number): void {
     this.totalQty = qty;
     this.totalQtyOutput.emit(qty);
   }

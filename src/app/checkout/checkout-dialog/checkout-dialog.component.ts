@@ -12,7 +12,7 @@ export class CheckoutDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close();
   }
 }

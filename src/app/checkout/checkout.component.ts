@@ -3,7 +3,7 @@ import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.compo
 import { CartService } from 'src/app/cart/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../products/models/product.model';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
@@ -11,6 +11,9 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { CheckoutService } from './checkout.service';
+import { forbiddenFirstNameValidator, forbiddenLastNameValidator } from './custom-validation.directive';
+import { first} from 'rxjs/operators';
+import { ActivatedRoute} from '@angular/router';
 const moment = _rollupMoment || _moment;
 
 export const MY_FORMATS = {
@@ -44,43 +47,64 @@ export class CheckoutComponent implements OnInit {
   dialogData: any;
   orderForm: FormGroup;
   formInfo: CheckoutInfo;
-  constructor(private cartService: CartService, public dialog: MatDialog, private checkoutService: CheckoutService) { }
+  constructor(
+    private cartService: CartService,
+    public dialog: MatDialog,
+    private checkoutService: CheckoutService,
+    private readonly route: ActivatedRoute,
+
+  ) {
+
+  }
+
+
 
   public ngOnInit(): void {
     this.cartService.cartItems.subscribe((products: Product[]) => {
       this.getCheckoutProducts(products);
     })
-    this.checkoutService.checkoutInfo.subscribe((checkoutInfo: CheckoutInfo) => {
-      this.formInfo = checkoutInfo;
-    })
-
     this.initForm();
-    this.orderForm.controls['date'].setValue(this.formInfo.date)
+    this.route.data.pipe(first()).subscribe((data) => {
+      this.populateForm(data.checkout)
+    })
+    this.checkoutService.getStorageCheckoutInfo();
+  }
+
+  public populateForm(info: CheckoutInfo): void {
+    this.orderForm.controls['email'].setValue(info.email)
+    this.orderForm.controls['firstName'].setValue(info.firstName)
+    this.orderForm.controls['lastName'].setValue(info.lastName)
+    this.orderForm.controls['city'].setValue(info.city)
+    this.orderForm.controls['state'].setValue(info.state)
+    this.orderForm.controls['zip'].setValue(info.zip)
+    this.orderForm.controls['cardNumber'].setValue(info.cardNumber)
+    this.orderForm.controls['date'].setValue(info.date)
+    this.orderForm.controls['CCV'].setValue(info.CCV)
+
   }
 
   public initForm(): void {
     this.orderForm = new FormGroup({
-      email: new FormControl(this.formInfo.email, { updateOn: 'change' }),
-      firstName: new FormControl(this.formInfo.firstName, { updateOn: 'change' }),
-      lastName: new FormControl(this.formInfo.lastName, { updateOn: 'change' }),
-      city: new FormControl(this.formInfo.city, { updateOn: 'change' }),
-      state: new FormControl(this.formInfo.state, { updateOn: 'change' }),
-      zip: new FormControl(this.formInfo.zip, { updateOn: 'change' }),
-      cardNumber: new FormControl(this.formInfo.cardNumber, { updateOn: 'change' }),
-      date: new FormControl(moment()),
-      CCV: new FormControl(this.formInfo.CCV, { updateOn: 'change' }),
+      email: new FormControl('', { updateOn: 'change' }),
+      firstName: new FormControl('', { updateOn: 'change' }),
+      lastName: new FormControl('', { updateOn: 'change' }),
+      city: new FormControl('', { updateOn: 'change' }),
+      state: new FormControl('', { updateOn: 'change' }),
+      zip: new FormControl('', { updateOn: 'change' }),
+      cardNumber: new FormControl('', { updateOn: 'change' }),
+      date: new FormControl(moment(), { updateOn: 'change' }),
+      CCV: new FormControl('', { updateOn: 'change' }),
 
     })
 
     this.orderForm.valueChanges.subscribe((orderForm) => {
-
       this.checkoutService.setStorageCheckoutInfo(orderForm)
 
     })
 
     this.orderForm.get('email').setValidators(Validators.required);
-    this.orderForm.get('firstName').setValidators(Validators.required);
-    this.orderForm.get('lastName').setValidators(Validators.required);
+    this.orderForm.get('firstName').setValidators([Validators.required, forbiddenFirstNameValidator(/ryan/i)]);
+    this.orderForm.get('lastName').setValidators([Validators.required, forbiddenLastNameValidator(/gosling/i)]);
     this.orderForm.get('city').setValidators(Validators.required);
     this.orderForm.get('state').setValidators(Validators.required);
     this.orderForm.get('zip').setValidators(Validators.required);
@@ -96,32 +120,17 @@ export class CheckoutComponent implements OnInit {
       }
     });
 
-    // this.orderForm.controls['cardNumber'].valueChanges.subscribe(cardNumber => {
-    //   if (cardNumber.length < 16) {
-    //     this.cardNumberInvalide = true;
-    //   } else if (!(/^\d+$/.test(cardNumber))) {
-    //     this.cardNumberInvalide = true;
-    //   }
-    //   else {
-    //     this.cardNumberInvalide = false;
-    //   }
-    // })
-    this.orderForm.controls['date'].valueChanges.subscribe(date => {
+    this.orderForm.controls['cardNumber'].valueChanges.subscribe(cardNumber => {
+      if (cardNumber.length !== 16) {
+        this.cardNumberInvalide = true;
+      } else {
+        this.cardNumberInvalide = false;
+      }
 
-      // date = date.format('MM/YYYY')
-      // console.log(date);
-
-
-      // date = date.split('/')
-      // if (+date[1] < 2021) {
-      //   this.dateInvalide = true;
-      // } else {
-      //   this.dateInvalide = false;
-      // }
-
-    });
-
+    })
   }
+
+
 
   public getCheckoutProducts(products: Product[]): void {
     this.checkoutItems = products;
@@ -147,7 +156,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  public chosenYearHandler(normalizedYear: Moment) {
+  public chosenYearHandler(normalizedYear: Moment): void {
     const ctrlValue = this.orderForm.controls['date'].value;
     ctrlValue.year(normalizedYear.year());
     this.orderForm.controls['date'].setValue(ctrlValue);
@@ -155,7 +164,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   public chosenMonthHandler(datepicker: MatDatepicker<Moment>, normalizedMonth: Moment): void {
-
     const ctrlValue = this.orderForm.controls['date'].value;
     ctrlValue.month(normalizedMonth.month());
     this.orderForm.controls['date'].setValue(ctrlValue);
