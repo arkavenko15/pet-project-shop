@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Product } from './../products/models/product.model';
+import { Product } from '../models/product.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CartService } from './cart.service';
 import { first } from 'rxjs/operators';
@@ -10,19 +10,17 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  @Input()
-  drawer: any;
+  @Input() drawer: any;
+  @Output() public totalQtyOutput: EventEmitter<number> = new EventEmitter<number>();
+
   public cartItems: Product[] = [];
   public cartTotal = 0;
-  @Output()
-  public totalQtyOutput: EventEmitter<number> = new EventEmitter<number>();
   public totalQty: number;
-
   public storageData$: Product[] = [];
 
   constructor(private cartService: CartService, private route: ActivatedRoute) { }
-  public ngOnInit() {
 
+  public ngOnInit() {
     this.route.data.pipe(first()).subscribe((data) => {
       this.addProductToCart(data.cart)
 
@@ -35,6 +33,7 @@ export class CartComponent implements OnInit {
       this.updateItemsQty(qty);
     })
   }
+
   public addProductToCart(products: Product[]): void {
     this.cartItems = products;
     //set product to storage

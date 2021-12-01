@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '', component: LayoutComponent, resolve: {cart : CartResolver}, children: [
       { path: 'checkout', loadChildren: () => import('./checkout/checkout.module').then(m => m.CheckoutModule) },
-      { path: 'authentification', loadChildren: () => import('./authentification/authentification.module').then(m => m.AuthentificationModule) },
+      { path: 'profile', loadChildren: () => import('./authentification/authentification.module').then(m => m.AuthentificationModule) },
       { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
 
     ]

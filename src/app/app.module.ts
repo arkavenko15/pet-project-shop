@@ -1,3 +1,5 @@
+import { AuthentificationService } from './authentification/authentification.service';
+import { SharedModule } from './shared/shared.module';
 import { CartResolver } from './cart/cart.resolver';
 import { CheckoutModule } from "./checkout/checkout.module";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,14 +20,20 @@ import { CartModule } from './cart/cart.module';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AuthentificationModule } from './authentification/authentification.module';
 import { WishlistComponent } from './wishlist/wishlist.component';
-import { WishlistItemComponent } from './wishlist/wishlist-item/wishlist-item.component';
+import { environment } from 'src/environments/environment';
+//database
+import { AngularFireModule} from '@angular/fire/compat';
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     WishlistComponent,
-    WishlistItemComponent,
 
   ],
   imports: [
@@ -43,11 +51,15 @@ import { WishlistItemComponent } from './wishlist/wishlist-item/wishlist-item.co
     AppRoutingModule,
     CartModule,
     CheckoutModule,
-    AuthentificationModule
+    AuthentificationModule,
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'angular-app'),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true},
-    CartResolver
+    CartResolver,
   ],
   bootstrap: [AppComponent]
 })

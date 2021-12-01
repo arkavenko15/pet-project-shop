@@ -55,12 +55,19 @@
         <img class="cart-img" src="assets/cart.png" alt="cart" />
       </button>
       <div class="authentification">
-        <a routerLink="/authentification" class="auth-link">
-          <img class="user-img" src="assets/account.png" alt="user" />
-        </a>
+        <div *ngIf="(authService.loggedIn$ | async)">
+          <a routerLink="/profile" class="auth-link">
+            <img class="user-img" src="assets/account.png" alt="user" />
+          </a>
+        </div>
+        <div *ngIf="!(authService.loggedIn$ | async)">
+          <a routerLink="/sign-in" class="auth-link">
+            <img class="user-img" src="assets/account.png" alt="user" />
+          </a>
+        </div>
+
       </div>
     </div>
   </nav>
-
   <router-outlet></router-outlet>
 </mat-drawer-container>

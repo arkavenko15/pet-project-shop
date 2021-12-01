@@ -1,46 +1,70 @@
 <div class="checkout-container" fxLayout="row" fxLayoutAlign="space-evenly stretch" *ngIf="checkoutItems.length >0">
-  <form class="checkout-form" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-    <h3 class="checkout-title">Shipping Details</h3>
-    <div class="purchase-email">
-      <input type="email" class="email form-input" placeholder="EMAIL" formControlName="email" email>
-      <div class="email-error" *ngIf="orderForm.controls.email.errors?.email">
-        Email not valid.
-      </div>
-    </div>
-    <div class="purchase-name">
-      <input type="text" class="first-name form-input" placeholder="FIRST NAME" formControlName="firstName" appForbiddenName>
-      <div class="first-name-error" *ngIf="orderForm.controls.firstName.errors?.['forbiddenFirstName']">First name cannot be {{orderForm.controls.firstName.value}}.</div>
 
-      <input type="text" class="last-name form-input" placeholder="LAST NAME" formControlName="lastName">
-      <div class="last-name-error" *ngIf="orderForm.controls.lastName.errors?.['forbiddenLastName']">Last name cannot be {{orderForm.controls.lastName.value}}.</div>
-    </div>
-    <div class="purchase-info">
-      <input type="text" class="city form-input" placeholder="CITY" formControlName="city">
-      <input type="text" class="state form-input" placeholder="STATE" formControlName="state">
-      <input type="text" class="zip form-input" placeholder="ZIP" formControlName="zip">
-    </div>
-    <h3 class="checkout-title">Payment Information</h3>
-    <div class="payment-info" class="card-date">
-      <div class="card-number-error" *ngIf="cardNumberInvalide">Card Number not valide.</div>
-      <input type="text" class="card-number form-input" placeholder="CARD NUMBER" formControlName="cardNumber">
-      <div class="card-info" >
-        <div class="card-date-error" *ngIf="dateInvalide">Date not valide.</div>
-        <mat-form-field appearance="fill" >
-          <mat-label>Expiration Date</mat-label>
-          <input matInput [matDatepicker]="dp" formControlName="date">
-          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-          <mat-datepicker #dp
-                          startView="multi-year"
-                          panelClass="example-month-picker"
-                          (yearSelected)="chosenYearHandler($event)"
-                          (monthSelected)="chosenMonthHandler(dp, $event)"
-                          >
-          </mat-datepicker>
-        </mat-form-field>
-        <input type="password" class="card-ccv form-input" placeholder="CCV" formControlName="CCV">
-      </div>
-    </div>
-    <button class="form-btn" [disabled]="!orderForm.valid || cardNumberInvalide ||dateInvalide">Purchase</button>
+  <form class="checkout-form" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <mat-tab-group mat-align-tabs="center" [(selectedIndex)]="tabIndex">
+      <mat-tab label="Shipping Details" class="checkout-tab">
+        <div class="purchase-email">
+          <input type="email" class="email form-input" placeholder="EMAIL" formControlName="email" email>
+          <div class="email-error" *ngIf="orderForm.controls.email.errors?.email">
+            Email not valid.
+          </div>
+        </div>
+        <div class="purchase-name">
+          <input type="text" class="first-name form-input" placeholder="FIRST NAME" formControlName="firstName" appForbiddenName>
+          <div class="first-name-error" *ngIf="orderForm.controls.firstName.errors?.['forbiddenFirstName']">First name cannot be {{orderForm.controls.firstName.value}}.</div>
+
+          <input type="text" class="last-name form-input" placeholder="LAST NAME" formControlName="lastName">
+          <div class="last-name-error" *ngIf="orderForm.controls.lastName.errors?.['forbiddenLastName']">Last name cannot be {{orderForm.controls.lastName.value}}.</div>
+        </div>
+        <div class="purchase-info">
+          <input type="text" class="city form-input" placeholder="CITY" formControlName="city">
+          <input type="text" class="state form-input" placeholder="STATE" formControlName="state">
+          <input type="text" class="zip form-input" placeholder="ZIP" formControlName="zip">
+        </div>
+        <div class="form-btn" (click)="proceedToPayment()">Proceed</div>
+      </mat-tab>
+      <mat-tab label="Payment Information">
+        <div class="payment-info" class="card-date">
+          <div class="card-number-error" *ngIf="cardNumberInvalide">Card Number not valide.</div>
+          <input type="text" class="card-number form-input" placeholder="CARD NUMBER" formControlName="cardNumber">
+          <div class="card-info" >
+            <div class="card-date-error" *ngIf="dateInvalide">Date not valide.</div>
+            <mat-form-field appearance="fill" >
+              <mat-label>Expiration Date</mat-label>
+              <input matInput [matDatepicker]="dp" formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp
+                              startView="multi-year"
+                              panelClass="example-month-picker"
+                              (yearSelected)="chosenYearHandler($event)"
+                              (monthSelected)="chosenMonthHandler(dp, $event)"
+                              >
+              </mat-datepicker>
+            </mat-form-field>
+            <input type="password" class="card-ccv form-input" placeholder="CCV" formControlName="CCV">
+          </div>
+          <div class="upload-img-container">
+            <div class="upload-img-navigation">
+              <input
+              style="display: none"
+              type="file" (change)="selectFile($event)"
+              #fileInput>
+            <button class="form-btn" (click)="fileInput.click()" type="button">Select File</button>
+            <div class="file-name">{{selectedFileName}}</div>
+          </div>
+            <div *ngFor="let item of uploadImageUrls">
+              <img  class="uploaded-img" src={{uploadImageUrls[0]}}>
+            </div>
+          </div>
+
+
+          <button type="submit" class="form-btn" [disabled]="!orderForm.valid || cardNumberInvalide ||dateInvalide">
+            Purchase
+          </button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
   </form>
   <div class="order-details">
     <h3 class="checkout-title">Selected Products</h3>

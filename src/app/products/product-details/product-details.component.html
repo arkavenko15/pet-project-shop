@@ -1,20 +1,5 @@
-<div class="product-details__item">
-  <img class="product-details__img" src={{product?.imageUrl}}/>
-  <div class="product-details__info">
-    <div class="product-details__name product-details__title">{{product?.name}}</div>
-    <div class="product-details__brand"><span class="product-details__title">Brand:</span>{{product?.brand}}</div>
-    <div class="product-details__category"><span class="product-details__title">Category:</span>{{product?.category}}</div>
-    <div class="product-details__price"><span class="product-details__title">Price:</span>{{product?.price | formatPrice}}<span >{{product?.price_sign}}</span></div>
-    <div class="product-details__date"><span class="product-details__title">Created at:</span>{{product?.created_at |date}}</div>
-    <div class="product-details__description">
-      <span [innerHtml]="product?.description"></span>
-    </div>
-    <div class="product-quantity" fxLayout="row" fxLayoutAlign="space-between stretch">
-      <button class="product-increment quantity-btn" (click)="onDecrementClick()" [disabled]="decrementDisabled()">-</button>
-      <input type="text" class="product-quantity-input" value={{productCount}} aria-readonly="true" id="qty">
-      <button class="product-decrement quantity-btn" (click)="onIncrementClick()" [disabled]="incrementDisabled()">+</button>
-    </div>
-    <button class="product-details__addtocart"(click)="handleAddToCart()">ADD TO CART</button>
-  </div>
-</div>
+
+<app-product-item [product]="product" [isProductDetailsItem]="isProductDetailsItem"></app-product-item>
+
+
 

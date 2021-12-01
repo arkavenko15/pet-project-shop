@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ProductsQuery } from '../models/product-query.model';
+import { ProductsQuery } from '../../models/product-query.model';
 import { ActivatedRoute, Router } from '@angular/router';
 interface Brand {
   value: string;

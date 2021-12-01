@@ -1,0 +1,27 @@
+<div class="authentification-container">
+  <div class="authentification-wrapper">
+    <div class="example-loading-shade"
+        *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <mat-card class="authentification-card" fxLayout="column" fxLayoutAlign="space-evenly center">
+      <div class="authentification-title">Sign Up</div>
+      <form [formGroup]="loginForm">
+        <mat-form-field class="email-container" >
+          <input matInput type="email" placeholder="Email" formControlName="email" #userEmail>
+        </mat-form-field>
+        <mat-form-field class="password-container">
+          <input matInput type="password" placeholder="Password" formControlName="password" #userPassword>
+        </mat-form-field>
+        <div class="button-row" fxLayout="row" fxLayoutAlign="space-between center">
+          <!-- <button class="login-btn" type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary">Login</button> -->
+          <span>Already have an account?</span>
+          <a routerLink="/sign-in">Sign in</a>
+          <button class="register-btn" type="button" mat-flat-button color="primary" (click)="authService.signUp(userEmail.value, userPassword.value)">Sign Up</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
+
+

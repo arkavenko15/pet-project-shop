@@ -7,7 +7,6 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorF
 })
 export class ForbiddenValidatorDirective implements Validator {
   @Input('appForbiddenName') forbiddenName = '';
-
   validate(control: AbstractControl): ValidationErrors | null {
     return this.forbiddenName ? forbiddenFirstNameValidator(new RegExp(this.forbiddenName, 'i'))(control): null;
   }

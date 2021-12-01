@@ -17,9 +17,8 @@ export class CheckoutService {
     this._localStorage.setItem('checkoutInfo', jsonData)
   }
 
-  public getStorageCheckoutInfo() :CheckoutInfo{
+  public getStorageCheckoutInfo(): CheckoutInfo{
     const jsonData = JSON.parse(this._localStorage.getItem('checkoutInfo'));
-    console.log(jsonData);
     this._checkoutInfo.next(jsonData)
     return jsonData
   }

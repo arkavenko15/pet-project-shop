@@ -1,206 +1,244 @@
-:host {
-  .checkout-container {
-    margin: 30px 150px;
-  }
-  .checkout-total {
-    font-size: 20px;
-    color: #5824d4;
-    font-weight: 500;
-    margin: 0 auto;
-  }
-  .form-input {
-    background-color: transparent;
-    border: 1px #5824d4 solid;
-    padding: 10px 15px;
-    margin-right: 10px;
-  }
-  .form-input:focus {
-    outline: none;
-  }
-  .form-btn {
-    padding: 10px 15px;
-    box-sizing: border-box;
-    border: 1px solid #5824d4;
-    background-color: #5824d4;
-    color: #fff;
-    border-radius: 3px;
-    font-weight: 600;
-    font-size: 18px;
-  }
-  .form-btn:hover {
-    background-color: #fff;
-    color: #5824d4;
-  }
-  .purchase-name,
-  .card-info,
-  .email {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
-  .purchase-info {
-    margin-bottom: 30px;
-  }
-  .card-number {
-    margin-bottom: 30px;
-  }
-  .checkout-title {
-    font-size: 18px;
-    color: #5824d4;
-    font-weight: 600;
-  }
-  .card-info {
-    max-height: 40px;
-  }
-  .purchase-email {
-    position: relative;
-  }
-  .email-error {
-    position: absolute;
-    border: #4f4f4f solid 1px;
-    background-color: #fff;
-    z-index: 2;
-    top: 0;
-    left: 45%;
-    background-color: #4f4f4f;
-    height: auto;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 40px;
-  }
-  .email-error:after {
-    content: " ";
-    position: absolute;
-    left: -15px;
-    top: 5px;
-    border-top: 15px solid transparent;
-    border-right: 15px solid #4f4f4f;
-    border-left: none;
-    border-bottom: 15px solid transparent;
-  }
-  .checkout-dialog {
-    font-size: 18px;
-  }
-  .order-name {
-    font-weight: 600;
-  }
-  .dialog-content {
-    text-align: center;
-  }
-  .dialog-btn {
-    background-color: #5824d4;
-    box-sizing: border-box;
-    border: #5824d4 1px solid;
-    color: #fff;
-    padding: 10px 15px;
-  }
-  .dialog-btn:hover {
-    background-color: #fff;
-    color: #5824d4;
-  }
-  .mat-dialog-container {
-    background: #b4a7d6;
-  }
-  .card-date {
-    position: relative;
-  }
-  .card-date-error {
-    position: absolute;
-    border: #4f4f4f solid 1px;
-    background-color: #fff;
-    z-index: 2;
-    top: 75px;
-    left: 255px;
-    background-color: #4f4f4f;
-    height: auto;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 40px;
-  }
-  .card-date-error:after {
-    content: " ";
-    position: absolute;
-    left: -15px;
-    top: 5px;
-    border-top: 15px solid transparent;
-    border-right: 15px solid #4f4f4f;
-    border-left: none;
-    border-bottom: 15px solid transparent;
-  }
-  .card-number-error {
-    position: absolute;
-    border: #4f4f4f solid 1px;
-    background-color: #fff;
-    z-index: 2;
-    top: 0px;
-    left: 210px;
-    background-color: #4f4f4f;
-    height: auto;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 40px;
-  }
-  .card-number-error:after {
-    content: " ";
-    position: absolute;
-    left: -15px;
-    top: 5px;
-    border-top: 15px solid transparent;
-    border-right: 15px solid #4f4f4f;
-    border-left: none;
-    border-bottom: 15px solid transparent;
-  }
-  .purchase-name {
-    position: relative;
-  }
+.checkout-container {
+  margin-top: 20px;
+}
 
-  .last-name-error {
-    position: absolute;
-    border: #4f4f4f solid 1px;
-    background-color: #fff;
-    z-index: 2;
-    top: 0px;
-    right: -190px;
-    background-color: #4f4f4f;
-    height: auto;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 40px;
-  }
+.mat-tab-body-content {
+  height: 100%;
+  overflow: hidden!important;
+}
 
-  .last-name-error::after {
-    content: " ";
-    position: absolute;
-    left: -15px;
-    top: 5px;
-    border-top: 15px solid transparent;
-    border-right: 15px solid #4f4f4f;
-    border-left: none;
-    border-bottom: 15px solid transparent;
-  }
+.mat-tab-label {
+  font-size: 18px;
+  color: #4f4f4f;
+}
 
-  .first-name-error {
-    position: absolute;
-    border: #4f4f4f solid 1px;
-    background-color: #fff;
-    z-index: 2;
-    top: 0px;
-    left: 210px;
-    background-color: #4f4f4f;
-    height: auto;
-    border-radius: 4px;
-    text-align: center;
-    line-height: 40px;
-  }
+.checkout-form {
+  min-width: 600px;
+}
 
-  .first-name-error::after {
-    content: " ";
-    position: absolute;
-    left: -15px;
-    top: 5px;
-    border-top: 15px solid transparent;
-    border-right: 15px solid #4f4f4f;
-    border-left: none;
-    border-bottom: 15px solid transparent;
-  }
+.upload-img-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.uploaded-img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.file-name {
+  font-size: 18px;
+  line-height: 42px;
+}
+
+.checkout-total {
+  font-size: 20px;
+  color: #5824d4;
+  font-weight: 500;
+  margin: 0 auto;
+}
+
+.mat-tab-body {
+  margin-top: 30px;
+}
+.mat-ink-bar {
+  background-color: #5824d4!important;
+}
+.form-input {
+  background-color: transparent;
+  border: 1px #5824d4 solid;
+  padding: 10px 15px;
+  margin-right: 10px;
+}
+.form-input:focus {
+  outline: none;
+}
+.form-btn {
+  padding: 10px 15px;
+  box-sizing: border-box;
+  border: 1px solid #5824d4;
+  background-color: #5824d4;
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 18px;
+  width: 150px;
+  text-align: center;
+}
+.form-btn:hover {
+  background-color: #fff;
+  color: #5824d4;
+}
+.purchase-name,
+.card-info,
+.email {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.purchase-info {
+  margin-bottom: 30px;
+}
+.card-number {
+  margin-bottom: 30px;
+}
+.checkout-title {
+  font-size: 18px;
+  color: #5824d4;
+  font-weight: 600;
+}
+.card-info {
+  max-height: 40px;
+}
+.purchase-email {
+  position: relative;
+}
+.email-error {
+  position: absolute;
+  border: #4f4f4f solid 1px;
+  background-color: #fff;
+  z-index: 2;
+  top: 0;
+  left: 45%;
+  background-color: #4f4f4f;
+  height: auto;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 40px;
+}
+.email-error:after {
+  content: " ";
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #4f4f4f;
+  border-left: none;
+  border-bottom: 15px solid transparent;
+}
+.checkout-dialog {
+  font-size: 18px;
+}
+.order-name {
+  font-weight: 600;
+}
+.dialog-content {
+  text-align: center;
+}
+.dialog-btn {
+  background-color: #5824d4;
+  box-sizing: border-box;
+  border: #5824d4 1px solid;
+  color: #fff;
+  padding: 10px 15px;
+}
+.dialog-btn:hover {
+  background-color: #fff;
+  color: #5824d4;
+}
+.mat-dialog-container {
+  background: #b4a7d6;
+}
+.card-date {
+  position: relative;
+}
+.card-date-error {
+  position: absolute;
+  border: #4f4f4f solid 1px;
+  background-color: #fff;
+  z-index: 2;
+  top: 75px;
+  left: 255px;
+  background-color: #4f4f4f;
+  height: auto;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 40px;
+}
+.card-date-error:after {
+  content: " ";
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #4f4f4f;
+  border-left: none;
+  border-bottom: 15px solid transparent;
+}
+.card-number-error {
+  position: absolute;
+  border: #4f4f4f solid 1px;
+  background-color: #fff;
+  z-index: 2;
+  top: 0px;
+  left: 210px;
+  background-color: #4f4f4f;
+  height: auto;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 40px;
+}
+.card-number-error:after {
+  content: " ";
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #4f4f4f;
+  border-left: none;
+  border-bottom: 15px solid transparent;
+}
+.purchase-name {
+  position: relative;
+}
+
+.last-name-error {
+  position: absolute;
+  border: #4f4f4f solid 1px;
+  background-color: #fff;
+  z-index: 2;
+  top: 0px;
+  right: -190px;
+  background-color: #4f4f4f;
+  height: auto;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.last-name-error::after {
+  content: " ";
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #4f4f4f;
+  border-left: none;
+  border-bottom: 15px solid transparent;
+}
+
+.first-name-error {
+  position: absolute;
+  border: #4f4f4f solid 1px;
+  background-color: #fff;
+  z-index: 2;
+  top: 0px;
+  left: 210px;
+  background-color: #4f4f4f;
+  height: auto;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.first-name-error::after {
+  content: " ";
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  border-top: 15px solid transparent;
+  border-right: 15px solid #4f4f4f;
+  border-left: none;
+  border-bottom: 15px solid transparent;
 }

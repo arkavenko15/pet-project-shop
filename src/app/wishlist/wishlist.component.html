@@ -1,8 +1,10 @@
+<h1 class="wishlist-title">Wishlist</h1>
 <div class="wishlist-container">
+
   <div *ngIf="wishlistItems.length === 0">
     Your wishlist is empty...
   </div>
   <div *ngFor="let wishlistItem of wishlistItems">
-    <app-wishlist-item [wishlistItem]="wishlistItem"></app-wishlist-item>
+    <app-product-item [product]="wishlistItem" [isWishlistItem]="isWishlistItem"></app-product-item>
   </div>
 </div>

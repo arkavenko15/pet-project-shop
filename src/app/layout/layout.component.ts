@@ -1,3 +1,4 @@
+import { AuthentificationService } from './../authentification/authentification.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,12 +16,15 @@ import { LoaderService } from './loader/loader.service';
 export class LayoutComponent implements OnInit {
   public showFiller = false;
   public qty: number = 0;
+  public isLoggedIn: boolean;
+  constructor(public loaderService: LoaderService, public dialog: MatDialog, public authService: AuthentificationService) { }
 
-  constructor(public loaderService: LoaderService, public dialog: MatDialog, private route: ActivatedRoute) { }
   ngOnInit(): void {}
    setTotalCartItemsQty(qty: number): void {
     this.qty = qty || 0;
+
   }
+
   public openDialog():void {
     this.dialog.open(WishlistComponent);
   }

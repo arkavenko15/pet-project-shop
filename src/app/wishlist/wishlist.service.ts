@@ -1,4 +1,4 @@
-import { Product } from './../products/models/product.model';
+import { Product } from '../models/product.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { LocalStorageRefService } from '../local-storage.service';
@@ -14,9 +14,6 @@ export class WishlistService {
 
   private _changedItem: Subject<Product> = new Subject<Product>();
   public changedItem: Observable<Product> = this._changedItem.asObservable();
-
-  // private _wishlistData$ = new Subject<Product[]>();
-  // public wishlistData$: Observable<Product[]> = this._wishlistData$.asObservable();
 
   constructor(private _localStorageRefService: LocalStorageRefService) { }
 

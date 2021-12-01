@@ -1,5 +1,5 @@
 import { CartService } from 'src/app/cart/cart.service';
-import { Product } from './../../products/models/product.model';
+import { Product } from '../../models/product.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
@@ -12,8 +12,7 @@ import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem: Product;
-  @Output()
-  updatedQtyOutput: EventEmitter<number> = new EventEmitter<number>();
+  @Output() updatedQtyOutput: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private readonly cartService: CartService, public dialog: MatDialog) { }
 

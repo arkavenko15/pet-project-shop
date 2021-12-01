@@ -1,0 +1,5 @@
+{
+    "prettier.printWidth": 140,
+    "typescriptHero.imports.multiLineWrapThreshold": 140,
+    "html.format.wrapLineLength": 140
+}

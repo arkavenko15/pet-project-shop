@@ -1,4 +1,4 @@
-import { Product } from './../../products/models/product.model';
+import { Product } from '../../models/product.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +10,7 @@ export class CheckoutItemComponent implements OnInit {
   @Input() checkoutItem :Product;
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

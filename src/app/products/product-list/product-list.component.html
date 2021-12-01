@@ -1,6 +1,9 @@
 <div class="container">
   <app-filter (selectedQuery)="getProducts($event)"></app-filter>
-  <app-paginator [length]="productsLength" (paginatorState)="paginationChange($event)"></app-paginator>
+  <app-paginator
+    [length]="productsLength"
+    (paginatorState)="paginationChange($event)"
+  ></app-paginator>
 
   <div
     class="product-list"
@@ -8,7 +11,7 @@
     fxLayoutAlign="space-between stretch"
   >
     <div *ngFor="let product of products">
-      <app-product-item [product]="product"></app-product-item>
+      <app-product-item [product]="product" [isProductlistItem]="isProductlistItem"></app-product-item>
     </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
 import { CheckoutInfo } from './checkout-info.model';
 import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
 import { CartService } from 'src/app/cart/cart.service';
-import { Component, OnInit } from '@angular/core';
-import { Product } from '../products/models/product.model';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Product } from '../models/product.model';
 import { Validators, FormGroup, FormControl} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as _moment from 'moment';
@@ -38,15 +38,26 @@ export const MY_FORMATS = {
 
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
+  encapsulation: ViewEncapsulation.None
 })
+
 export class CheckoutComponent implements OnInit {
-  checkoutItems: Product[];
-  dateInvalide: boolean = false;
-  cardNumberInvalide: boolean = false;
-  total: number = 0;
-  dialogData: any;
-  orderForm: FormGroup;
-  formInfo: CheckoutInfo;
+  public checkoutItems: Product[];
+  public dateInvalide: boolean = false;
+  public cardNumberInvalide: boolean = false;
+  public total: number = 0;
+  public dialogData: any;
+  public orderForm: FormGroup;
+  public formInfo: CheckoutInfo;
+  public selectedFile: File;
+  public selectedFiles:File[] = [];
+  public selectedFileName :string;
+  public tabIndex: number = 0;
+
+  public uploadImageUrls: any[] = [];
+
+  public uploadImageUrl: any;
+
   constructor(
     private cartService: CartService,
     public dialog: MatDialog,
@@ -56,8 +67,6 @@ export class CheckoutComponent implements OnInit {
   ) {
 
   }
-
-
 
   public ngOnInit(): void {
     this.cartService.cartItems.subscribe((products: Product[]) => {
@@ -70,17 +79,37 @@ export class CheckoutComponent implements OnInit {
     this.checkoutService.getStorageCheckoutInfo();
   }
 
-  public populateForm(info: CheckoutInfo): void {
-    this.orderForm.controls['email'].setValue(info.email)
-    this.orderForm.controls['firstName'].setValue(info.firstName)
-    this.orderForm.controls['lastName'].setValue(info.lastName)
-    this.orderForm.controls['city'].setValue(info.city)
-    this.orderForm.controls['state'].setValue(info.state)
-    this.orderForm.controls['zip'].setValue(info.zip)
-    this.orderForm.controls['cardNumber'].setValue(info.cardNumber)
-    this.orderForm.controls['date'].setValue(info.date)
-    this.orderForm.controls['CCV'].setValue(info.CCV)
 
+  public selectFile(event: any):void {
+    console.log(event.target.files);
+
+    this.selectedFiles = this.selectedFiles.concat(event.target.files[0])
+
+
+    this.selectedFiles.map((item)=>{
+      const reader = new FileReader();
+      reader.readAsDataURL(item);
+      reader.onload = (_event) => {
+        console.log(reader.result);
+        //this.uploadImageUrls.length = 0;
+        this.uploadImageUrls.push(reader.result)
+        this.uploadImageUrl = reader.result;
+      }
+    })
+
+    // this.selectedFile = event.target.files[0]
+    // this.selectedFileName = this.selectedFile.name;
+    // const reader = new FileReader();
+    // reader.readAsDataURL(this.selectedFile);
+    // reader.onload = (_event) => {
+    //     this.uploadImageUrl = reader.result;
+    // }
+
+  }
+
+  public proceedToPayment():void {
+    const tabCount = 2;
+    this.tabIndex = (this.tabIndex + 1) % tabCount;
   }
 
   public initForm(): void {
@@ -112,8 +141,6 @@ export class CheckoutComponent implements OnInit {
     this.orderForm.get('date').setValidators(Validators.required);
     this.orderForm.get('CCV').setValidators(Validators.required);
 
-
-
     this.orderForm.controls['city'].valueChanges.subscribe(res => {
       if (res === "lviv") {
         this.orderForm.controls['zip'].setValue('79007');
@@ -121,7 +148,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.orderForm.controls['cardNumber'].valueChanges.subscribe(cardNumber => {
-      if (cardNumber.length !== 16) {
+      if (cardNumber?.length !== 16) {
         this.cardNumberInvalide = true;
       } else {
         this.cardNumberInvalide = false;
@@ -130,7 +157,18 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
+  public populateForm(info: CheckoutInfo): void {
+    this.orderForm.controls['email'].setValue(info.email)
+    this.orderForm.controls['firstName'].setValue(info.firstName)
+    this.orderForm.controls['lastName'].setValue(info.lastName)
+    this.orderForm.controls['city'].setValue(info.city)
+    this.orderForm.controls['state'].setValue(info.state)
+    this.orderForm.controls['zip'].setValue(info.zip)
+    this.orderForm.controls['cardNumber'].setValue(info.cardNumber)
+    this.orderForm.controls['date'].setValue(info.date)
+    this.orderForm.controls['CCV'].setValue(info.CCV)
 
+  }
 
   public getCheckoutProducts(products: Product[]): void {
     this.checkoutItems = products;
@@ -151,24 +189,18 @@ export class CheckoutComponent implements OnInit {
   public openDialog(): void {
     const dialogRef = this.dialog.open(CheckoutDialogComponent, { data: this.dialogData });
     dialogRef.afterClosed().subscribe(result => {
-      // this.orderForm.reset();
       return result
     });
   }
 
   public chosenYearHandler(normalizedYear: Moment): void {
-    const ctrlValue = this.orderForm.controls['date'].value;
-    ctrlValue.year(normalizedYear.year());
-    this.orderForm.controls['date'].setValue(ctrlValue);
-
+    this.orderForm.controls['date'].setValue(new Date((new Date()).setFullYear(normalizedYear.year())));
   }
 
   public chosenMonthHandler(datepicker: MatDatepicker<Moment>, normalizedMonth: Moment): void {
     const ctrlValue = this.orderForm.controls['date'].value;
-    ctrlValue.month(normalizedMonth.month());
-    this.orderForm.controls['date'].setValue(ctrlValue);
+    this.orderForm.controls['date'].setValue(new Date(ctrlValue.setMonth(normalizedMonth.month())));
     datepicker.close();
-
   }
 
 }

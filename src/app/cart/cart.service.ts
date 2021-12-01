@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { LocalStorageRefService } from '../local-storage.service';
 
-import { Product } from './../products/models/product.model';
+import { Product } from '../models/product.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,7 @@ export class CartService {
   private _totalItemsQty: BehaviorSubject<number> = new BehaviorSubject<number>(this.getTotalQty(JSON.parse(this._localStorage.getItem('cartData'))||[]))
   public totalItemsQty: Observable<number> = this._totalItemsQty.asObservable();
 
-  constructor(private _localStorageRefService: LocalStorageRefService) {}
+  constructor(private _localStorageRefService: LocalStorageRefService, public router: Router) {}
 
   public setStorageCartItems(data: Product[]):void {
     const jsonData = JSON.stringify(data)
@@ -69,6 +70,15 @@ export class CartService {
 
   public decrementQty(): void {
     this._totalItemsQty.next(this._totalItemsQty.value - 1);
+  }
+
+  public canActivate(): boolean {
+    let items: Product[] = this._cartItems.value || [];
+    if (items.length) {
+      this.router.navigate(['checkout']);
+      return false;
+    }
+    return true;
   }
 
 }

@@ -1,4 +1,4 @@
-import { AuthentificationComponent } from './authentification.component';
+import { AuthentificationService } from './authentification.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -8,10 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthentificationRoutingModule } from './authentification-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
-    AuthentificationComponent
+    SignUpComponent,
+    SignInComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +27,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     AuthentificationRoutingModule,
     FlexLayoutModule
+  ],
+  providers: [
+    AuthentificationService
   ]
 })
 export class AuthentificationModule { }

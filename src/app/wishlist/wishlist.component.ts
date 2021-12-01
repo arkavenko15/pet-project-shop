@@ -1,6 +1,6 @@
 import { WishlistService } from './wishlist.service';
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Product } from '../products/models/product.model';
+import { Product } from '../models/product.model';
 import { Subscription, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -13,17 +13,17 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class WishlistComponent implements OnInit, OnDestroy {
   public wishlistItems: any[];
-
+  public isWishlistItem: boolean = true;
   private _destroy$ = new Subject;
   constructor(private readonly wishlistService: WishlistService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.wishlistService.wishlistItems.pipe(takeUntil(this._destroy$)).subscribe((products: Product[]) => {
       this.wishlistItems = products;
     })
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this._destroy$.next()
     this._destroy$.complete()
   }
